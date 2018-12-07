@@ -46,3 +46,5 @@ We're using the publicly available data from the Superintendência de Seguros Pr
 └── public
 ```
 
+The `.gpkg` files for drawing state boundaries can be downloaded from [https://biogeo.ucdavis.edu/data/gadm3.6/gpkg/gadm36_BRA_gpkg.zip](https://biogeo.ucdavis.edu/data/gadm3.6/gpkg/gadm36_BRA_gpkg.zip). See [https://gadm.org/download_country_v3.html](https://gadm.org/download_country_v3.html) for details.
+
