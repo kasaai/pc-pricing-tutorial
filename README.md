@@ -4,6 +4,7 @@
 
 The goal of this project is to build an end-to-end reproducible example of a ratemaking project in R, in the form of a series of blog posts. The target audience includes students, actuaries, and data scientists who are interested in learning about insurance pricing or porting their existing workflows.
 
+<<<<<<< upstream/master
 A live preview of the tutorial can be found at [https://pricing-tutorial.netlify.com/](https://pricing-tutorial.netlify.com/).
 
 ## Scope
@@ -30,4 +31,18 @@ The `.gpkg` files for drawing state boundaries can be downloaded from [https://b
 
 ## Contributing
 
-Interested in joining in on the fun? Look at the [issues](https://github.com/kasaai/pc-pricing-tutorial/issues) page to see what tasks need help and check out [contributing guidelines](https://github.com/kasaai/pc-pricing-tutorial/blob/master/CONTRIBUTING.md). Not familiar with R but want to lend your actuarial expertise? Please feel free to comment on issues to share your thoughts or open new issues to let us know how we can do things better!
+Interested in joining in on the fun? Look at the [issues](https://github.com/kasaai/pc-pricing-tutorial/issues) page to see what tasks need help and check out [contributing guidelines](https://github.com/kasaai/pc-pricing-tutorial/blob/master/CONTRIBUTING.md).
+
+## Data Access
+
+We're using the publicly available data from the Superintendência de Seguros Privados of Brazil. The data can be downloaded from [http://www2.susep.gov.br/menuestatistica/Autoseg/principal.aspx](http://www2.susep.gov.br/menuestatistica/Autoseg/principal.aspx). We'll be using the first half of 2012 (`Autoseg2012B`) to start, since that's the first time period where CSVs (as opposed to MS Access files) are available. The convention we'll use in this repo is that we'll put the uncompressed directory in `data/`, so your directory structure might look something like
+
+```
+├── analysis
+├── article
+├── data
+│   ├── Autoseg2012B
+│   └── gadm36_BRA_gpkg
+└── public
+```
+
