@@ -1,0 +1,17 @@
+---
+title: "Pricing Brazilian Personal Auto"
+description: |
+  A tutorial for P&C pricing using R.
+author:
+  - name: To Be Added
+date: "`r Sys.Date()`"
+output: 
+    radix::radix_article:
+      self_contained: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+(Interesting analyses incoming)
