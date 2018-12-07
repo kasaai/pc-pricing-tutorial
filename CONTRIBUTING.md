@@ -2,6 +2,10 @@
 
 New code should follow the tidyverse [style guide](http://style.tidyverse.org).
 
+### Analysis writeup
+
+If you decide to use RMarkdown for a specific task, put the `.Rmd` souce in `analysis/`, use `github_document` as the output (if it doesn't have interactive visualizations), and select  "Knit from directory." The `.md` files generated can then be previewed on GitHub.
+
 ### Changes to article
 
 The latest version of the tutorial is hosted at [https://pricing-tutorial.netlify.com/](https://pricing-tutorial.netlify.com/). To make changes:
