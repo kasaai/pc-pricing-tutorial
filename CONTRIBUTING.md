@@ -12,3 +12,7 @@ The latest version of the tutorial is hosted at [https://pricing-tutorial.netlif
 4. If you're happy with what you see in `public/index.html`, send a PR.
 
 Once the PR is created, a preview version should be deployed and you'll be able to see it in the build details.
+
+### New to Git/GitHub?
+
+Check out [http://happygitwithr.com/](http://happygitwithr.com/). Also feel free to ask questions in the [gitter channel](https://gitter.im/kasa-official/pc-pricing-tutorial).
