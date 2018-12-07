@@ -1,0 +1,30 @@
+---
+title: "Polygon Mapping"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, message = FALSE, warning = FALSE}
+library(tidyverse)
+library(sf)
+
+read_autoseg <- function(file, col_types = NULL) {
+  readr::read_delim(file, delim = ";", locale = locale(encoding = "ISO-8859-1"), col_types = col_types)
+}
+
+auto_reg <- read_autoseg("data/Autoseg2012B/auto_reg.csv")
+
+bra_layer1 <- sf::st_read("data/gadm36_BRA_gpkg/gadm36_BRA.gpkg", layer = "gadm36_BRA_1")
+
+state_mapping <- data_frame(hasc = as.character(bra_layer1$HASC_1)) %>%
+  left_join(
+    auto_reg %>%
+      mutate(hasc = paste0("BR.", substr(DESCRICAO, 1, 2))),
+    by = "hasc"
+  )
+
+state_mapping
+```
