@@ -2,5 +2,5 @@
 
 # P&C Pricing Tutorial
 
-Notebooks for P&C insurance pricing with R.
+End-to-end reproducible ratemaking with R.
 
