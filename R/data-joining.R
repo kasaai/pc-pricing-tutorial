@@ -1,16 +1,14 @@
 library(tidyverse)
 
-read_autoseg <- function(file, col_types = NULL, n_max = Inf, na = c("", "NA")) {
+read_autoseg <- function(file, ...) {
   readr::read_delim(
     file, delim = ";", 
     locale = locale(decimal_mark = ",", encoding = "ISO-8859-1"), 
-    col_types = col_types,
-    n_max = n_max,
-    na = na
+    ...
   )
 }
 
-policy_table <- read_autoseg(
+risks_table <- read_autoseg(
   "data/Autoseg2012B/arq_casco_comp.csv",
   col_types = cols(
     COD_TARIF = col_character(),
@@ -82,7 +80,7 @@ auto2_grupo <- read_autoseg("data/Autoseg2012B/auto2_grupo.csv", col_types = "cc
          vehicle_group_description = descricao
   )
 
-policy_table_mapped <- policy_table %>%
+risks_table_mapped <- risks_table %>%
   left_join(auto_cat, by = c(COD_TARIF = "code")) %>%
   left_join(auto_reg, by = c(REGIAO = "code")) %>%
   left_join(auto2_vei, by = c(COD_MODELO = "code")) %>%
