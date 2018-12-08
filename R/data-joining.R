@@ -96,7 +96,7 @@ policy_table_mapped <- policy_table %>%
   ) %>%
   select(
     # stuff we mapped
-    -COD_TARIF, -REGIAO, -COD_MODELO, -SEXO, -IDADE,
+    -COD_TARIF, -REGIAO, -COD_MODELO, -SEXO, -IDADE, -vehicle_group_code,
     # stuff we don't need
     -EXPOSICAO2, -PREMIO2, -IS_MEDIA,
   ) %>%
