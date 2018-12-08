@@ -88,6 +88,7 @@ policy_table_mapped <- policy_table %>%
   left_join(auto2_vei, by = c(COD_MODELO = "code")) %>%
   left_join(auto_sexo, by = c(SEXO = "code")) %>%
   left_join(auto_idade, by = c(IDADE = "code")) %>%
+  left_join(auto2_grupo, by = "vehicle_group_code") %>%
   rename(
     vehicle_year = ANO_MODELO,
     data_year = ENVIO,
