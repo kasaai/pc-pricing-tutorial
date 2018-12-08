@@ -93,13 +93,14 @@ policy_table_mapped <- policy_table %>%
     vehicle_year = ANO_MODELO,
     data_year = ENVIO,
     exposure = EXPOSICAO1,
-    premium = PREMIO1
+    premium = PREMIO1,
+    average_insured_amount = IS_MEDIA
   ) %>%
   select(
     # stuff we mapped
     -COD_TARIF, -REGIAO, -COD_MODELO, -SEXO, -IDADE, -vehicle_group_code,
     # stuff we don't need
-    -EXPOSICAO2, -PREMIO2, -IS_MEDIA,
+    -EXPOSICAO2, -PREMIO2
   ) %>%
   rename_at(
     vars(matches("^(FREQ_SIN|INDENIZ)")),
