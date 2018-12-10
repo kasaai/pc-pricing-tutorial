@@ -6,7 +6,7 @@
 read_autoseg <- function(file, ...) {
   readr::read_delim(
     file, delim = ";", 
-    locale = locale(decimal_mark = ",", encoding = "ISO-8859-1"), 
+    locale = readr::locale(decimal_mark = ",", encoding = "ISO-8859-1"), 
     ...
   )
 }
