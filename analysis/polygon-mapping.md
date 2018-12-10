@@ -4,17 +4,14 @@ Polygon Mapping
 ``` r
 library(tidyverse)
 library(sf)
+library(pricingtutorial)
 
-read_autoseg <- function(file, col_types = NULL) {
-  readr::read_delim(file, delim = ";", locale = locale(encoding = "ISO-8859-1"), col_types = col_types)
-}
+auto_reg <- read_autoseg("external_data/Autoseg2012B/auto_reg.csv")
 
-auto_reg <- read_autoseg("data/Autoseg2012B/auto_reg.csv")
-
-bra_layer1 <- sf::st_read("data/gadm36_BRA_gpkg/gadm36_BRA.gpkg", layer = "gadm36_BRA_1")
+bra_layer1 <- sf::st_read("external_data/gadm36_BRA_gpkg/gadm36_BRA.gpkg", layer = "gadm36_BRA_1")
 ```
 
-    ## Reading layer `gadm36_BRA_1' from data source `/Users/kevinykuo/Dropbox/Projects/pc-pricing-tutorial/data/gadm36_BRA_gpkg/gadm36_BRA.gpkg' using driver `GPKG'
+    ## Reading layer `gadm36_BRA_1' from data source `/Users/kevinykuo/Dropbox/Projects/pc-pricing-tutorial/external_data/gadm36_BRA_gpkg/gadm36_BRA.gpkg' using driver `GPKG'
     ## Simple feature collection with 27 features and 10 fields
     ## geometry type:  MULTIPOLYGON
     ## dimension:      XY
