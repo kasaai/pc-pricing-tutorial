@@ -1,4 +1,4 @@
-[![Gitter chat](https://badges.gitter.im/kasa-official/gitter.png)](https://gitter.im/kasa-official/pc-pricing-tutorial)
+[![Travis build status](https://travis-ci.org/kasaai/pc-pricing-tutorial.svg?branch=master)](https://travis-ci.org/kasaai/pc-pricing-tutorial) [![Gitter chat](https://badges.gitter.im/kasa-official/gitter.png)](https://gitter.im/kasa-official/pc-pricing-tutorial)
 
 # P&C Pricing Tutorial
 
