@@ -1,0 +1,8 @@
+^\.travis\.yml$
+^CONTRIBUTING\.md$
+^external_data$
+^manuscript$
+^public$
+^analysis$
+^.*\.Rproj$
+^\.Rproj\.user$
