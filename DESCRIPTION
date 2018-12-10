@@ -9,9 +9,8 @@ Authors@R:
            email = "kevinykuo@gmail.com",
            comment = c(ORCID = "0000-0001-7803-7901"))
 Maintainer: Kevin Kuo <kevinykuo@gmail.com>
-Description: Companion package for P&C Pricing
-    Tutorial
-License: AGPL-3
+Description: Companion package for P&C Pricing Tutorial.
+License: AGPL-3 | file LICENSE
 Depends:
     R (>= 3.2)
 Imports: 
