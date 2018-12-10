@@ -1,0 +1,5 @@
+^manuscript$
+^public$
+^analysis$
+^.*\.Rproj$
+^\.Rproj\.user$
