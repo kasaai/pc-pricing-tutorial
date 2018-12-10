@@ -1,4 +1,4 @@
-![alt text](./images/598px-CRISP-DM_Process_Diagram.png)
+<a title="Kenneth Jensen [CC BY-SA 3.0 (https://creativecommons.org/licenses/by-sa/3.0)], via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:CRISP-DM_Process_Diagram.png"><img width="512" alt="CRISP-DM Process Diagram" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/CRISP-DM_Process_Diagram.png/512px-CRISP-DM_Process_Diagram.png"></a>
 
 We'll loosely follow the cross-industry standard for data mining (CRISP-DM), making modifications when needed to fit the insurance use case. This will be a starting point and illustrates the iterative and cyclical nature of predictive modeling - i.e., feature engineering may influence what goes into the model, but modeling outcomes may influence feature engineering. I think we should create our own diagram, especially since data preparation and modeling has many subtasks and cycles between those subtasks.
 
