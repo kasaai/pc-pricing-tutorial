@@ -8,7 +8,7 @@ If you decide to use RMarkdown for a specific task, put the `.Rmd` souce in `ana
 
 ### Helper functions
 
-If you define reusable functions in your analysis workflow, it is recommended that you include them in the **pricingtutorial* companion package, which also lives in this repo. Add the functions to `R/` and document them appropriately, and include tests as appropriate. See [R Packages](http://r-pkgs.had.co.nz/) for more information on R packages.
+If you define reusable functions in your analysis workflow, it is recommended that you include them in the **pricingtutorial** companion package, which also lives in this repo. Add the functions to `R/` and document them appropriately, and include tests as appropriate. See [R Packages](http://r-pkgs.had.co.nz/) for more information on R packages.
 
 ### Changes to article
 
