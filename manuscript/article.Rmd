@@ -24,7 +24,7 @@ In this tutorial, we walk through an example of a pricing project using R, from 
 
 ## Data
 
-In this tutorial, we use the publicly available data from Brazil's Superintendence of Private Insurance (SUSEP). It maintains policy-characteristics-level data for personal auto from 2007 to 2014. This data source was chosen because it contains a variety of variables, from policyholder characteristics to losses by peril, to support a nontrivial analysis, and contains a variety of mapping tables so we can demonstrate a broader range of data manipulation work found in a typical pricing assignment. You can access the data from SUSEP's [AUTOSEG](http://www2.susep.gov.br/menuestatistica/Autoseg/principal.aspx) website.
+In this tutorial, we use the publicly available data from Brazil's Superintendence of Private Insurance (SUSEP). It maintains policy-characteristics-level data for personal auto from 2007 to 2014 for all insured vehicles in Brazil. This data source was chosen because it contains a variety of variables, from policyholder characteristics to losses by peril, to support a nontrivial analysis, and contains a variety of mapping tables so we can demonstrate a broader range of data manipulation work found in a typical pricing assignment. You can access the data from SUSEP's [AUTOSEG](http://www2.susep.gov.br/menuestatistica/Autoseg/principal.aspx) website.
 
 ### Data details
 
