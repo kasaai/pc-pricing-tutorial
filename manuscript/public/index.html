@@ -972,9 +972,99 @@
 <p>Advances in machine learning and open source technologies are having a profound impact on many industries, and insurance is no exception. In the US, both the Society of Actuaries and CAS Institute list knowledge of R as a requirement in exam syllabi <span class="citation" data-cites="soapa cspaexam">(Society of Actuaries <a href="#ref-soapa">2018</a>; CAS Institute <a href="#ref-cspaexam">2018</a>)</span>. In a draft white paper on regulatory review of predictive models, the National Association of Insurance Commisioners (NAIC) recognizes that actuaries are using techniques such as random forests and neural networks in predictive modeling projects <span class="citation" data-cites="naicwhitepaper">(Casualty Actuarial and Statistical (C) Task Force <a href="#ref-naicwhitepaper">2010</a>)</span>. However, while much has been written on modeling methodology for pricing, there have been few freely available resources that include reproducible code; one such example is <span class="citation" data-cites="alfredo">(Alfredo <a href="#ref-alfredo">2011</a>)</span>. To the best of our knowledge, prior to the current article, no tutorials exist that show the end-to-end pricing workflow.</p>
 <p>In this tutorial, we walk through an example of a pricing project using R, from preparing raw data for modeling to filing. Throughout the process, we provide reproducible code for each analysis task so the reader can follow along. We also attempt to adhere to the latest regulatory guidelines, so actuaries can better adopt the workflow presented in their work.</p>
 <h2 id="data">Data</h2>
-<p>In this tutorial, we use the publicly available data from Brazil’s Superintendence of Private Insurance (SUSEP). It maintains policy-characteristics-level data for personal auto from 2007 to 2014. This data source was chosen because it contains a variety of variables, from policyholder characteristics to losses by peril, to support a nontrivial analysis, and contains a variety of mapping tables so we can demonstrate a broader range of data manipulation work found in a typical pricing assignment. You can access the data from SUSEP’s <a href="http://www2.susep.gov.br/menuestatistica/Autoseg/principal.aspx">AUTOSEG</a> website.</p>
+<p>In this tutorial, we use the publicly available data from Brazil’s Superintendence of Private Insurance (SUSEP). It maintains policy-characteristics-level data for personal auto from 2007 to 2014 for all insured vehicles in Brazil. This data source was chosen because it contains a variety of variables, from policyholder characteristics to losses by peril, to support a nontrivial analysis, and contains a variety of mapping tables so we can demonstrate a broader range of data manipulation work found in a typical pricing assignment. You can access the data from SUSEP’s <a href="http://www2.susep.gov.br/menuestatistica/Autoseg/principal.aspx">AUTOSEG</a> website.</p>
 <h3 id="data-details">Data details</h3>
-<p>Maybe a listing of tables.</p>
+<p>With the help of documentation accompanying the datasets, we compile a list of tables shown below.</p>
+<h4 id="main-tables">Main Tables</h4>
+<table>
+<colgroup>
+<col style="width: 13%" />
+<col style="width: 86%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>File</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>arq_casco</td>
+<td>Exposure data, premiums, claims and insured amount for the CASCO overhead, classified by the Key Category Rate / Region / Model / Year / Sex / Age Range</td>
+</tr>
+<tr class="even">
+<td>arq_casco3</td>
+<td>Exposure data, premiums and claims for the CASCO overhang, classified by the Key Rate Category / CEP / Model / Year key</td>
+</tr>
+<tr class="odd">
+<td>arq_casco4</td>
+<td>Exposure data, premiums and claims for the CASCO overhang, classified by the Key Rate Category / City / Model / Year</td>
+</tr>
+<tr class="even">
+<td>premreg</td>
+<td>Regional distribution of prices</td>
+</tr>
+<tr class="odd">
+<td>sinreg</td>
+<td>Regional distribution of claims</td>
+</tr>
+</tbody>
+</table>
+<h4 id="auxiliary-tables">Auxiliary Tables</h4>
+<table>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 84%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>File</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>auto2_vei</td>
+<td>FIPE code and description of each vehicle model, in addition to the group code to which it belongs</td>
+</tr>
+<tr class="even">
+<td>auto2_group</td>
+<td>Code and description of model groups it contains</td>
+</tr>
+<tr class="odd">
+<td>auto_cat</td>
+<td>Description code of tariff categories</td>
+</tr>
+<tr class="even">
+<td>auto_cau</td>
+<td>Code and description of causes of accidents</td>
+</tr>
+<tr class="odd">
+<td>auto_cep</td>
+<td>Correlates the CEP with cities and regions of circulation</td>
+</tr>
+<tr class="even">
+<td>auto_cob</td>
+<td>Code and description of covers</td>
+</tr>
+<tr class="odd">
+<td>auto_idade</td>
+<td>Code and description of age groups</td>
+</tr>
+<tr class="even">
+<td>auto_reg</td>
+<td>Code and description of regions of circulation</td>
+</tr>
+<tr class="odd">
+<td>auto_sexo</td>
+<td>Code and description of sex (male, female, legal)</td>
+</tr>
+<tr class="even">
+<td>auto_city</td>
+<td>Code and name of cities</td>
+</tr>
+</tbody>
+</table>
 <h3 id="data-prep">Data prep</h3>
 <p>Joins, mappings, etc.</p>
 <h3 id="validation-scheme">Validation scheme</h3>
