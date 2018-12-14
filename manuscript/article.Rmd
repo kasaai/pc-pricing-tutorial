@@ -28,7 +28,32 @@ In this tutorial, we use the publicly available data from Brazil's Superintenden
 
 ### Data details
 
-Maybe a listing of tables.
+With the help of documentation accompanying the datasets, we compile a list of tables shown below.
+
+#### Main Tables
+
+| File      | Description                                                          |
+|-----------|----------------------------------------------------------------------|
+| arq_casco | Exposure data, premiums, claims and insured amount for the CASCO overhead, classified by the Key Category Rate / Region / Model / Year / Sex / Age Range |
+| arq_casco3| Exposure data, premiums and claims for the CASCO overhang, classified by the Key Rate Category / CEP / Model / Year key |
+|arq_casco4 | Exposure data, premiums and claims for the CASCO overhang, classified by the Key Rate Category / City / Model / Year |
+| premreg   | Regional distribution of prices |
+| sinreg    | Regional distribution of claims |
+
+#### Auxiliary Tables
+
+| File        | Description                                                          |
+|-------------|----------------------------------------------------------------------|
+| auto2_vei   | FIPE code and description of each vehicle model, in addition to the group code to which it belongs |
+| auto2_group | Code and description of model groups it contains                     |
+| auto_cat    | Description code of tariff categories                                |
+| auto_cau    | Code and description of causes of accidents                          |
+| auto_cep    | Correlates the CEP with cities and regions of circulation            |
+| auto_cob    | Code and description of covers                                       |
+| auto_idade  | Code and description of age groups                                   |
+| auto_reg    | Code and description of regions of circulation                       |
+| auto_sexo   | Code and description of sex (male, female, legal)                    |
+| auto_city   | Code and name of cities                                              |
 
 ### Data prep
 
