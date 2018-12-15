@@ -11,6 +11,8 @@ date: "`r Sys.Date()`"
 output: 
     radix::radix_article:
       self_contained: false
+      toc: true
+      toc_depth: 1
 bibliography: ref.bib
 ---
 
@@ -22,11 +24,11 @@ Advances in machine learning and open source technologies are having a profound 
 
 In this tutorial, we walk through an example of a pricing project using R, from preparing raw data for modeling to filing. Throughout the process, we provide reproducible code for each analysis task so the reader can follow along. We also attempt to adhere to the latest regulatory guidelines, so actuaries can better adopt the workflow presented in their work.
 
-## Data
+# Data
 
 In this tutorial, we use the publicly available data from Brazil's Superintendence of Private Insurance (SUSEP). It maintains policy-characteristics-level data for personal auto from 2007 to 2014 for all insured vehicles in Brazil. This data source was chosen because it contains a variety of variables, from policyholder characteristics to losses by peril, to support a nontrivial analysis, and contains a variety of mapping tables so we can demonstrate a broader range of data manipulation work found in a typical pricing assignment. You can access the data from SUSEP's [AUTOSEG](http://www2.susep.gov.br/menuestatistica/Autoseg/principal.aspx) website.
 
-### Data details
+## Data details
 
 With the help of documentation accompanying the datasets, we compile a list of tables shown below.
 
@@ -55,24 +57,24 @@ With the help of documentation accompanying the datasets, we compile a list of t
 | auto_sexo   | Code and description of sex (male, female, legal)                    |
 | auto_city   | Code and name of cities                                              |
 
-### Data prep
+## Data prep
 
 Joins, mappings, etc.
 
-### Validation scheme
+## Validation scheme
 
 Talk about holdout here or maybe earlier.
 
-## EDA
+# EDA
 
 Distributions
 "One-way" analysis
 
-## Modeling
+# Modeling
 
 Variable selection, modeling, etc.
 
-## Rating plan
+# Rating plan
 
 Transfer results to plan, dislocation analysis, etc.
 
