@@ -57,6 +57,8 @@ With the help of documentation accompanying the datasets, we compile a list of t
 | auto_sexo   | Code and description of sex (male, female, legal)                    |
 | auto_city   | Code and name of cities                                              |
 
+The excerpts for each of the source tables, before any transformations, can be found at [Raw Table Excerpts](https://github.com/kasaai/pc-pricing-tutorial/blob/master/analysis/raw-table-excerpts.md).
+
 ## Data prep
 
 Joins, mappings, etc.

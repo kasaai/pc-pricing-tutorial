@@ -7,6 +7,68 @@ date: "`r Sys.Date()`"
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
+library(pricingtutorial)
+
+read_excerpt <- function(tbl, data_dir, n_max = 10) {
+  get_num_cols <- function(file) {
+    readLines(file, n = 1) %>% str_split(";") %>% unlist() %>% length()
+  }
+  file_path <- paste0(file.path(data_dir, tbl), ".csv")
+  ncol_casco_comp <- get_num_cols(file_path)
+  read_autoseg(
+    file_path,
+    n_max = n_max, col_types = paste0(rep("c", ncol_casco_comp), collapse = "")
+  )
+}
+```
+
+## Main tables
+
+Excerpts of the main tables are provided below.
+
+### arq_casco_comp
+
+```{r, echo = FALSE}
+arq_casco_comp <- read_excerpt(
+  tbl = "arq_casco_comp", data_dir = "external_data/Autoseg2012B/"
+)
+knitr::kable(arq_casco_comp)
+```
+
+### arq_casco3_comp
+
+```{r, echo = FALSE}
+arq_casco3_comp <- read_excerpt(
+  tbl = "arq_casco3_comp", data_dir = "external_data/Autoseg2012B/"
+)
+knitr::kable(arq_casco3_comp)
+```
+
+### arq_casco_comp4
+
+```{r, echo = FALSE}
+arq_casco4_comp <- read_excerpt(
+  tbl = "arq_casco4_comp", data_dir = "external_data/Autoseg2012B/"
+)
+knitr::kable(arq_casco4_comp)
+```
+
+### PremReg
+
+```{r, echo = FALSE}
+prem_reg <- read_excerpt(
+  tbl = "PremReg", data_dir = "external_data/Autoseg2012B/"
+)
+knitr::kable(prem_reg)
+```
+
+### SinReg
+
+```{r, echo = FALSE}
+sin_reg <- read_excerpt(
+  tbl = "SinReg", data_dir = "external_data/Autoseg2012B/"
+)
+knitr::kable(sin_reg)
 ```
 
 ## Auxiliary tables
@@ -14,7 +76,6 @@ library(tidyverse)
 Excerpts of auxiliary tables are provided below.
 
 ```{r, echo = FALSE, include = FALSE}
-library(pricingtutorial)
 auto_cat <- read_autoseg("external_data/Autoseg2012B/auto_cat.csv")
 auto_cau <- read_autoseg("external_data/Autoseg2012B/auto_cau.csv")
 auto_cep <- read_autoseg("external_data/Autoseg2012B/auto_cep.csv")
