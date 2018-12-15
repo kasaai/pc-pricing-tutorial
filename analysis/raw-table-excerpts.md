@@ -52,6 +52,36 @@ below.
 | 1          | 21     | 003267-0    | 2005        | BAIANOPOLIS          | 0,353424668312073  | 278,386932373047   | 0          | 0        | 0           | 0         | 0          | 0        | 0          | 0        | 1955        | 2012B |
 | 1          | 21     | 003267-0    | 2005        | SALVADOR             | 0,0739726051688194 | 0,0681439265608788 | 0          | 0        | 0           | 0         | 0          | 0        | 0          | 0        | 2714        | 2012B |
 
+### PremReg
+
+| regiao | descricao                              | tipo\_prem | exposicao        | premios          | is\_media        |
+| :----- | :------------------------------------- | :--------- | :--------------- | :--------------- | :--------------- |
+| 01     | RS - Met. Porto Alegre e Caxias do Sul | APP        | 210974,278615603 | 7212875,74055789 | 25551,0548968014 |
+| 01     | RS - Met. Porto Alegre e Caxias do Sul | TOTAL      | 320962,52483077  | 418334101,173994 | 240738,519520613 |
+| 01     | RS - Met. Porto Alegre e Caxias do Sul | CASCO      | 290025,248270047 | 307068248,659755 | 35371,0526338247 |
+| 01     | RS - Met. Porto Alegre e Caxias do Sul | RCDM       | 303435,289273478 | 65043264,3026994 | 85008,5900501924 |
+| 01     | RS - Met. Porto Alegre e Caxias do Sul | RCDP       | 309325,001556413 | 39050269,9013748 | 112361,033920129 |
+| 02     | RS - Demais regiões                    | RCDP       | 248267,577242866 | 35493348,3829045 | 120561,929544794 |
+| 02     | RS - Demais regiões                    | CASCO      | 228711,212979713 | 213383703,649825 | 36483,4855360455 |
+| 02     | RS - Demais regiões                    | RCDM       | 245374,319726404 | 53826442,803267  | 91006,2636066536 |
+| 02     | RS - Demais regiões                    | APP        | 188675,33358492  | 7369327,78262774 | 33831,7591108219 |
+| 02     | RS - Demais regiões                    | TOTAL      | 257660,848457774 | 310036984,455088 | 264197,639801192 |
+
+### SinReg
+
+| regiao | descricao                              | tipo\_sin | numSinistros | indenizacoes |
+| :----- | :------------------------------------- | :-------- | :----------- | :----------- |
+| 01     | RS - Met. Porto Alegre e Caxias do Sul | RCDP      | 69           | 365671       |
+| 01     | RS - Met. Porto Alegre e Caxias do Sul | CASCO     | 40788        | 237578506    |
+| 01     | RS - Met. Porto Alegre e Caxias do Sul | RCDM      | 20260        | 71500066     |
+| 01     | RS - Met. Porto Alegre e Caxias do Sul | APP       | 21           | 526795       |
+| 01     | RS - Met. Porto Alegre e Caxias do Sul | TOTAL     | 61138        | 309971038    |
+| 02     | RS - Demais regiões                    | RCDM      | 11692        | 44029541     |
+| 02     | RS - Demais regiões                    | APP       | 32           | 557280       |
+| 02     | RS - Demais regiões                    | CASCO     | 22749        | 145709144    |
+| 02     | RS - Demais regiões                    | RCDP      | 81           | 673264       |
+| 02     | RS - Demais regiões                    | TOTAL     | 34554        | 190969229    |
+
 ## Auxiliary tables
 
 Excerpts of auxiliary tables are provided below.
