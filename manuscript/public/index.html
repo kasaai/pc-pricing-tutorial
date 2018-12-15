@@ -48,7 +48,7 @@
   <!--radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","bibliography"]}},"value":[{"type":"character","attributes":{},"value":["[DRAFT] Personal Auto Pricing"]},{"type":"character","attributes":{},"value":["A tutorial for P&C pricing using R.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","affiliation"]}},"value":[{"type":"character","attributes":{},"value":["Author"]},{"type":"character","attributes":{},"value":["Affiliation"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","affiliation"]}},"value":[{"type":"character","attributes":{},"value":["Author"]},{"type":"character","attributes":{},"value":["Affiliation"]}]}]},{"type":"character","attributes":{},"value":["2018-12-14"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["radix::radix_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["ref.bib"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","bibliography"]}},"value":[{"type":"character","attributes":{},"value":["[DRAFT] Personal Auto Pricing"]},{"type":"character","attributes":{},"value":["A tutorial for P&C pricing using R.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","affiliation"]}},"value":[{"type":"character","attributes":{},"value":["Author"]},{"type":"character","attributes":{},"value":["Affiliation"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","affiliation"]}},"value":[{"type":"character","attributes":{},"value":["Author"]},{"type":"character","attributes":{},"value":["Affiliation"]}]}]},{"type":"character","attributes":{},"value":["2018-12-14"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["radix::radix_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","toc","toc_depth"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[1]}]}]},{"type":"character","attributes":{},"value":["ref.bib"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -969,11 +969,21 @@
 </div>
 
 <div class="d-article">
+<h3 class="d-toc-header">Table of Contents</h3>
+<nav class="d-toc" id="TOC">
+<ul>
+<li><a href="#data">Data</a></li>
+<li><a href="#eda">EDA</a></li>
+<li><a href="#modeling">Modeling</a></li>
+<li><a href="#rating-plan">Rating plan</a></li>
+</ul>
+</nav>
+<hr class="d-toc-separator"/>
 <p>Advances in machine learning and open source technologies are having a profound impact on many industries, and insurance is no exception. In the US, both the Society of Actuaries and CAS Institute list knowledge of R as a requirement in exam syllabi <span class="citation" data-cites="soapa cspaexam">(Society of Actuaries <a href="#ref-soapa">2018</a>; CAS Institute <a href="#ref-cspaexam">2018</a>)</span>. In a draft white paper on regulatory review of predictive models, the National Association of Insurance Commisioners (NAIC) recognizes that actuaries are using techniques such as random forests and neural networks in predictive modeling projects <span class="citation" data-cites="naicwhitepaper">(Casualty Actuarial and Statistical (C) Task Force <a href="#ref-naicwhitepaper">2010</a>)</span>. However, while much has been written on modeling methodology for pricing, there have been few freely available resources that include reproducible code; one such example is <span class="citation" data-cites="alfredo">(Alfredo <a href="#ref-alfredo">2011</a>)</span>. To the best of our knowledge, prior to the current article, no tutorials exist that show the end-to-end pricing workflow.</p>
 <p>In this tutorial, we walk through an example of a pricing project using R, from preparing raw data for modeling to filing. Throughout the process, we provide reproducible code for each analysis task so the reader can follow along. We also attempt to adhere to the latest regulatory guidelines, so actuaries can better adopt the workflow presented in their work.</p>
-<h2 id="data">Data</h2>
+<h1 id="data">Data</h1>
 <p>In this tutorial, we use the publicly available data from Brazil’s Superintendence of Private Insurance (SUSEP). It maintains policy-characteristics-level data for personal auto from 2007 to 2014 for all insured vehicles in Brazil. This data source was chosen because it contains a variety of variables, from policyholder characteristics to losses by peril, to support a nontrivial analysis, and contains a variety of mapping tables so we can demonstrate a broader range of data manipulation work found in a typical pricing assignment. You can access the data from SUSEP’s <a href="http://www2.susep.gov.br/menuestatistica/Autoseg/principal.aspx">AUTOSEG</a> website.</p>
-<h3 id="data-details">Data details</h3>
+<h2 id="data-details">Data details</h2>
 <p>With the help of documentation accompanying the datasets, we compile a list of tables shown below.</p>
 <h4 id="main-tables">Main Tables</h4>
 <table>
@@ -1065,15 +1075,15 @@
 </tr>
 </tbody>
 </table>
-<h3 id="data-prep">Data prep</h3>
+<h2 id="data-prep">Data prep</h2>
 <p>Joins, mappings, etc.</p>
-<h3 id="validation-scheme">Validation scheme</h3>
+<h2 id="validation-scheme">Validation scheme</h2>
 <p>Talk about holdout here or maybe earlier.</p>
-<h2 id="eda">EDA</h2>
+<h1 id="eda">EDA</h1>
 <p>Distributions “One-way” analysis</p>
-<h2 id="modeling">Modeling</h2>
+<h1 id="modeling">Modeling</h1>
 <p>Variable selection, modeling, etc.</p>
-<h2 id="rating-plan">Rating plan</h2>
+<h1 id="rating-plan">Rating plan</h1>
 <p>Transfer results to plan, dislocation analysis, etc.</p>
 <div id="refs" class="references">
 <div id="ref-alfredo">
