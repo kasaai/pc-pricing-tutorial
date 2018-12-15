@@ -1,0 +1,100 @@
+---
+title: "Raw Table Excerpts"
+output: github_document
+date: "`r Sys.Date()`"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+## Auxiliary tables
+
+Excerpts of auxiliary tables are provided below.
+
+```{r, echo = FALSE, include = FALSE}
+library(pricingtutorial)
+auto_cat <- read_autoseg("external_data/Autoseg2012B/auto_cat.csv")
+auto_cau <- read_autoseg("external_data/Autoseg2012B/auto_cau.csv")
+auto_cep <- read_autoseg("external_data/Autoseg2012B/auto_cep.csv")
+auto_cidade <- read_autoseg("external_data/Autoseg2012B/auto_cidade.csv")
+auto_cob <- read_autoseg("external_data/Autoseg2012B/auto_cob.csv")
+auto_idade <- read_autoseg("external_data/Autoseg2012B/auto_idade.csv")
+auto_reg <- read_autoseg("external_data/Autoseg2012B/auto_reg.csv")
+auto_sexo <- read_autoseg("external_data/Autoseg2012B/auto_sexo.csv")
+auto2_grupo <- read_autoseg("external_data/Autoseg2012B/auto2_grupo.csv")
+auto2_vei <- read_autoseg("external_data/Autoseg2012B/auto2_vei.csv")
+```
+
+### auto_cat
+
+```{r, echo = FALSE}
+knitr::kable(auto_cat)
+```
+
+### auto_cau
+
+```{r, echo = FALSE}
+knitr::kable(auto_cau)
+```
+
+### auto_cep
+
+```{r, echo = FALSE}
+auto_cep %>%
+  head(10) %>%
+  knitr::kable()
+```
+
+### auto_cidade
+
+```{r, echo = FALSE}
+auto_cidade %>%
+  head(10) %>%
+  knitr::kable()
+```
+
+### auto_cob
+
+```{r, echo = FALSE}
+knitr::kable(auto_cob)
+```
+
+### auto_idade
+
+```{r, echo = FALSE}
+auto_idade %>%
+  head(10) %>%
+  knitr::kable()
+```
+
+### auto_reg
+
+```{r, echo = FALSE}
+auto_reg %>%
+  head(10) %>%
+  knitr::kable()
+```
+
+### auto_sexo
+
+```{r, echo = FALSE}
+knitr::kable(auto_sexo)
+```
+
+### auto2_grupo
+
+```{r, echo = FALSE}
+auto2_grupo %>%
+  head(10) %>%
+  knitr::kable()
+```
+
+### auto2_vei
+
+```{r, echo = FALSE}
+auto2_vei %>%
+  head(10) %>%
+  knitr::kable()
+```
