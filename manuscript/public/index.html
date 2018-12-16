@@ -995,7 +995,7 @@
 <button class="collapsible" data-content-name="maintables" data-content-type="tablelist">
 Main Tables<span style="float: right;">+</span>
 </button>
-<div class="content" data-content-name="maintables" data-content-type="tablelist">
+<div class="content l-body-outset" data-content-name="maintables" data-content-type="tablelist">
 <table>
 <colgroup>
 <col style="width: 13%" />
@@ -1034,7 +1034,8 @@ Main Tables<span style="float: right;">+</span>
 <button class="collapsible" data-content-name="auxtables" data-content-type="tablelist">
 Auxiliary Tables<span style="float: right;">+</span>
 </button>
-<div class="content" data-content-name="auxtables" data-content-type="tablelist">
+<div class="content l-body-outset" data-content-name="auxtables" data-content-type="tablelist">
+<div class="l-body-outset">
 <table>
 <colgroup>
 <col style="width: 15%" />
@@ -1089,6 +1090,7 @@ Auxiliary Tables<span style="float: right;">+</span>
 </tr>
 </tbody>
 </table>
+</div>
 </div>
 <p>The excerpts for each of the source tables, before any transformations, can be found at <a href="https://github.com/kasaai/pc-pricing-tutorial/blob/master/analysis/raw-table-excerpts.md">Raw Table Excerpts</a>.</p>
 <p>We note that, for the purpose of this exercise, we’ll use the <code>arq_casco</code> policy table since it is the only one that contains poilcyholder characteristics (sex and age.) We are unable to utilize <code>arq_casco3</code> and <code>arq_casco4</code>, which contain more granular location information, since there are no keys to join by; presumably the data is presented this way to preserve privacy.</p>
