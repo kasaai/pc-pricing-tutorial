@@ -29,22 +29,33 @@ risks_table <- read_autoseg(
     INDENIZ9 = col_double(),
     ENVIO = col_character()
   ),
+  # ANO_MODELO contains these invalid values which we treat as NA
   na = c("", "    ", "0   ")
 )
 
-auto_cat <- read_autoseg("external_data/Autoseg2012B/auto_cat.csv", col_types = "cc") %>%
+auto_cat <- read_autoseg("external_data/Autoseg2012B/auto_cat.csv", col_types = "cc")
+auto_reg <- read_autoseg("external_data/Autoseg2012B/auto_reg.csv")
+auto2_vei <- read_autoseg("external_data/Autoseg2012B/auto2_vei.csv", col_types = "cccc")
+auto_sexo <- read_autoseg("external_data/Autoseg2012B/auto_sexo.csv")
+auto_idade <- read_autoseg("external_data/Autoseg2012B/auto_idade.csv", col_types = "cc")
+auto_cau <- read_autoseg("external_data/Autoseg2012B/auto_cau.csv", col_types = "cc")
+auto2_grupo <- read_autoseg("external_data/Autoseg2012B/auto2_grupo.csv", col_types = "cc")
+
+# Translations
+
+auto_cat <- auto_cat %>%
   rename(
     code = CODIGO,
     vehicle_category = CATEGORIA
   )
 
-auto_reg <- read_autoseg("external_data/Autoseg2012B/auto_reg.csv") %>%
+auto_reg <- auto_reg %>%
   rename(
     code = CODIGO,
     region = DESCRICAO
   )
 
-auto2_vei <- read_autoseg("external_data/Autoseg2012B/auto2_vei.csv", col_types = "cccc") %>%
+auto2_vei <- auto2_vei %>%
   rename(
     code = CODIGO,
     model_details = DESCRICAO,
@@ -52,36 +63,30 @@ auto2_vei <- read_autoseg("external_data/Autoseg2012B/auto2_vei.csv", col_types 
     vehicle_group_code = COD_GRUPO
   )
 
-auto_sexo <- read_autoseg("external_data/Autoseg2012B/auto_sexo.csv") %>%
+auto_sexo <- auto_sexo %>%
   rename(
     code = codigo,
     sex = descricao
   )
 
-auto_idade <- read_autoseg("external_data/Autoseg2012B/auto_idade.csv", col_types = "cc") %>%
+auto_idade <- auto_idade %>%
   rename(
     code = codigo,
     age_range = descricao
   )
 
-auto_cau <- read_autoseg("external_data/Autoseg2012B/auto_cau.csv", col_types = "cc") %>%
+auto_cau <- auto_cau %>%
   rename(
     code = CODIGO,
     cause = CAUSA
   )
 
-auto2_grupo <- read_autoseg("external_data/Autoseg2012B/auto2_grupo.csv", col_types = "cc") %>%
+auto2_grupo <- auto2_grupo %>%
   rename(vehicle_group_code = grpid,
          vehicle_group_description = descricao
   )
 
-risks_table_mapped <- risks_table %>%
-  left_join(auto_cat, by = c(COD_TARIF = "code")) %>%
-  left_join(auto_reg, by = c(REGIAO = "code")) %>%
-  left_join(auto2_vei, by = c(COD_MODELO = "code")) %>%
-  left_join(auto_sexo, by = c(SEXO = "code")) %>%
-  left_join(auto_idade, by = c(IDADE = "code")) %>%
-  left_join(auto2_grupo, by = "vehicle_group_code") %>%
+risks_table <- risks_table %>%
   rename(
     # Translate colum names
     vehicle_year = ANO_MODELO,
@@ -89,12 +94,6 @@ risks_table_mapped <- risks_table %>%
     exposure = EXPOSICAO1,
     premium = PREMIO1,
     average_insured_amount = IS_MEDIA
-  ) %>%
-  select(
-    # stuff we mapped
-    -COD_TARIF, -REGIAO, -COD_MODELO, -SEXO, -IDADE, -vehicle_group_code,
-    # stuff we don't need
-    -EXPOSICAO2, -PREMIO2
   ) %>%
   rename_at(
     # Translate count/amount and perils
@@ -114,5 +113,22 @@ risks_table_mapped <- risks_table %>%
           paste(value_type, cause, sep = "_")
         })
     }
+  ) 
+
+
+# Joins
+
+risks_table_mapped <- risks_table %>%
+  left_join(auto_cat, by = c(COD_TARIF = "code")) %>%
+  left_join(auto_reg, by = c(REGIAO = "code")) %>%
+  left_join(auto2_vei, by = c(COD_MODELO = "code")) %>%
+  left_join(auto_sexo, by = c(SEXO = "code")) %>%
+  left_join(auto_idade, by = c(IDADE = "code")) %>%
+  left_join(auto2_grupo, by = "vehicle_group_code") %>%
+  select(
+    # stuff we mapped
+    -COD_TARIF, -REGIAO, -COD_MODELO, -SEXO, -IDADE, -vehicle_group_code,
+    # stuff we don't need
+    -EXPOSICAO2, -PREMIO2
   ) %>%
   mutate_if(is.character, trimws)
