@@ -16,6 +16,9 @@ output:
 bibliography: ref.bib
 ---
 
+<script src="https://d3js.org/d3.v5.min.js"></script>
+<link rel="stylesheet" type="text/css" href="./index_files/styles.css"  />
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
@@ -34,11 +37,15 @@ In this tutorial, we use the publicly available data from Brazil's Superintenden
 
 With the help of documentation accompanying the datasets, we compile a list of tables shown below.
 
-#### Main Tables
-
-**(consider collapsing)**
-
 **(these need to be in better English see [issues/42](https://github.com/kasaai/pc-pricing-tutorial/issues/42))**
+
+<div style="width: 100%">
+  <button class="expand-collapse-button" data-content-type="tablelist">expand all</button>
+</div>
+
+<button class="collapsible" data-content-name="maintables" data-content-type="tablelist">Main Tables<span style="float: right;">+</span></button>
+
+<div class="content" content-name="maintables" content-type="tablelist">
 
 | File      | Description                                                          |
 |-----------|----------------------------------------------------------------------|
@@ -48,7 +55,11 @@ With the help of documentation accompanying the datasets, we compile a list of t
 | premreg   | Regional distribution of prices |
 | sinreg    | Regional distribution of claims |
 
-#### Auxiliary Tables
+</div>
+
+<button class="collapsible" data-content-name="auxtables" data-content-type="tablelist">Auxiliary Tables<span style="float: right;">+</span></button>
+
+<div class="content" content-name="auxtables" content-type="tablelist">
 
 | File        | Description                                                          |
 |-------------|----------------------------------------------------------------------|
@@ -62,6 +73,8 @@ With the help of documentation accompanying the datasets, we compile a list of t
 | auto_reg    | Code and description of regions of circulation                       |
 | auto_sexo   | Code and description of sex (male, female, legal)                    |
 | auto_city   | Code and name of cities                                              |
+
+</div>
 
 The excerpts for each of the source tables, before any transformations, can be found at [Raw Table Excerpts](https://github.com/kasaai/pc-pricing-tutorial/blob/master/analysis/raw-table-excerpts.md).
 
@@ -94,5 +107,4 @@ Variable selection, modeling, etc.
 
 Transfer results to plan, dislocation analysis, etc.
 
-
-
+<script src="index_files/index.js"></script>

@@ -1,0 +1,44 @@
+.collapsible {
+  cursor: pointer;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 20px;
+  font-weight: 700;
+  background-color: white;
+  color: rgba(0, 0, 0, 0.8);
+  padding: 0.5em;
+  margin: 0.2em;
+  margin-left: 0;
+  padding-left: 0;
+  transform: translateX(0px);
+  transition: 
+      color 0.1s ease-out,
+      transform 0.25s ease;
+}
+
+.collapsible:hover {
+  border-bottom: 1px solid inset;
+  color: rgba(0, 0, 0, 0.4);
+  transform: translateX(10px);
+  transition: 
+      transform 0.25s ease;
+}
+
+d-article .content {
+  display: none;
+  overflow: hidden;
+  background-color: none;
+}
+
+.expand-collapse-button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  font-size: 18px;
+  font-weight: 700;
+  float: right;
+}
