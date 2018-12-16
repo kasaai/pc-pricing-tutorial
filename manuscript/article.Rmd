@@ -20,6 +20,55 @@ bibliography: ref.bib
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
+```{css}
+.collapsible {
+  cursor: pointer;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 20px;
+  font-weight: 700;
+  background-color: white;
+  color: rgba(0, 0, 0, 0.8);
+  padding: 0.5em;
+  margin: 0.2em;
+  margin-left: 0;
+  padding-left: 0;
+  transform: translateX(0px);
+  transition: 
+      color 0.1s ease-out,
+      transform 0.25s ease;
+}
+
+.collapsible:hover {
+  border-bottom: 1px solid inset;
+  color: rgba(0, 0, 0, 0.4);
+  transform: translateX(10px);
+  transition: 
+      transform 0.25s ease;
+}
+
+d-article .content {
+  display: none;
+  overflow: hidden;
+  background-color: none;
+}
+
+.expand-collapse-button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  font-size: 18px;
+  font-weight: 700;
+  float: right;
+}
+```
+
+<script src="https://d3js.org/d3.v5.min.js"></script>
+
 Advances in machine learning and open source technologies are having a profound impact on many industries, and insurance is no exception. In the US, both the Society of Actuaries and CAS Institute list knowledge of R as a requirement in exam syllabi [@soapa; @cspaexam]. In a draft white paper on regulatory review of predictive models, the National Association of Insurance Commisioners (NAIC) recognizes that actuaries are using techniques such as random forests and neural networks in predictive modeling projects [@naicwhitepaper]. However, while much has been written on modeling methodology for pricing, there have been few freely available resources that include reproducible code; one such example is [@alfredo]. To the best of our knowledge, prior to the current article, no tutorials exist that show the end-to-end pricing workflow.
 
 In this tutorial, we walk through an example of a pricing project using R, from preparing raw data for modeling to filing. Throughout the process, we provide reproducible code for each analysis task so the reader can follow along. We also attempt to adhere to the latest regulatory guidelines, so actuaries can better adopt the workflow presented in their work.
@@ -34,11 +83,15 @@ In this tutorial, we use the publicly available data from Brazil's Superintenden
 
 With the help of documentation accompanying the datasets, we compile a list of tables shown below.
 
-#### Main Tables
-
-**(consider collapsing)**
-
 **(these need to be in better English see [issues/42](https://github.com/kasaai/pc-pricing-tutorial/issues/42))**
+
+<div style="width: 100%">
+  <button class="expand-collapse-button" data-content-type="tablelist">expand all</button>
+</div>
+
+<button class="collapsible" data-content-name="maintables" data-content-type="tablelist">Main Tables<span style="float: right;">+</span></button>
+
+<div class="content" content-name="maintables" content-type="tablelist">
 
 | File      | Description                                                          |
 |-----------|----------------------------------------------------------------------|
@@ -48,7 +101,11 @@ With the help of documentation accompanying the datasets, we compile a list of t
 | premreg   | Regional distribution of prices |
 | sinreg    | Regional distribution of claims |
 
-#### Auxiliary Tables
+</div>
+
+<button class="collapsible" data-content-name="auxtables" data-content-type="tablelist">Auxiliary Tables<span style="float: right;">+</span></button>
+
+<div class="content" content-name="auxtables" content-type="tablelist">
 
 | File        | Description                                                          |
 |-------------|----------------------------------------------------------------------|
@@ -62,6 +119,8 @@ With the help of documentation accompanying the datasets, we compile a list of t
 | auto_reg    | Code and description of regions of circulation                       |
 | auto_sexo   | Code and description of sex (male, female, legal)                    |
 | auto_city   | Code and name of cities                                              |
+
+</div>
 
 The excerpts for each of the source tables, before any transformations, can be found at [Raw Table Excerpts](https://github.com/kasaai/pc-pricing-tutorial/blob/master/analysis/raw-table-excerpts.md).
 
@@ -96,3 +155,33 @@ Transfer results to plan, dislocation analysis, etc.
 
 
 
+<script type="text/javascript">
+// The expand/collapse functionality is adapted from https://github.com/distillpub/post--feature-wise-transformations
+//   which is licensed under CC BY 4.0 https://creativecommons.org/licenses/by/4.0/
+(function() {
+    d3.selectAll(".collapsible")
+        .on("click", function() {
+            d3.selectAll('.content[data-content-name="' + d3.select(this).attr("data-content-name") + '"]')
+                .style("display", function() {
+                    return d3.select(this).style("display") === "block" ? "none" : "block";
+                });
+            var symbolSpan = d3.select(this).select("span");
+            symbolSpan.html(symbolSpan.html() === "+" ? "-" : "+");
+        });
+    d3.selectAll(".expand-collapse-button")
+        .on("click", function() {
+            var mode = d3.select(this).html();
+            var contentType = d3.select(this).attr("data-content-type");
+            d3.select(this).html(mode === "expand all" ? "collapse all" : "expand all");
+            d3.selectAll('.content[data-content-type="' + contentType + '"]')
+                .style("display", function() {
+                    return mode === "expand all" ? "block" : "none";
+                });
+            d3.selectAll('.collapsible[data-content-type="' + contentType + '"]').select("span")
+                .html(function() {
+                    return mode === "expand all" ? "-" : "+";
+                });
+        });
+})();
+
+</script>
