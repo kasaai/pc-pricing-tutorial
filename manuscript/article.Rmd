@@ -16,58 +16,12 @@ output:
 bibliography: ref.bib
 ---
 
+<script src="https://d3js.org/d3.v5.min.js"></script>
+<link rel="stylesheet" type="text/css" href="./index_files/styles.css"  />
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
-
-```{css}
-.collapsible {
-  cursor: pointer;
-  padding-top: 12px;
-  padding-bottom: 12px;
-  width: 100%;
-  border: none;
-  text-align: left;
-  outline: none;
-  font-size: 20px;
-  font-weight: 700;
-  background-color: white;
-  color: rgba(0, 0, 0, 0.8);
-  padding: 0.5em;
-  margin: 0.2em;
-  margin-left: 0;
-  padding-left: 0;
-  transform: translateX(0px);
-  transition: 
-      color 0.1s ease-out,
-      transform 0.25s ease;
-}
-
-.collapsible:hover {
-  border-bottom: 1px solid inset;
-  color: rgba(0, 0, 0, 0.4);
-  transform: translateX(10px);
-  transition: 
-      transform 0.25s ease;
-}
-
-d-article .content {
-  display: none;
-  overflow: hidden;
-  background-color: none;
-}
-
-.expand-collapse-button {
-  cursor: pointer;
-  border: none;
-  outline: none;
-  font-size: 18px;
-  font-weight: 700;
-  float: right;
-}
-```
-
-<script src="https://d3js.org/d3.v5.min.js"></script>
 
 Advances in machine learning and open source technologies are having a profound impact on many industries, and insurance is no exception. In the US, both the Society of Actuaries and CAS Institute list knowledge of R as a requirement in exam syllabi [@soapa; @cspaexam]. In a draft white paper on regulatory review of predictive models, the National Association of Insurance Commisioners (NAIC) recognizes that actuaries are using techniques such as random forests and neural networks in predictive modeling projects [@naicwhitepaper]. However, while much has been written on modeling methodology for pricing, there have been few freely available resources that include reproducible code; one such example is [@alfredo]. To the best of our knowledge, prior to the current article, no tutorials exist that show the end-to-end pricing workflow.
 
@@ -153,35 +107,4 @@ Variable selection, modeling, etc.
 
 Transfer results to plan, dislocation analysis, etc.
 
-
-
-<script type="text/javascript">
-// The expand/collapse functionality is adapted from https://github.com/distillpub/post--feature-wise-transformations
-//   which is licensed under CC BY 4.0 https://creativecommons.org/licenses/by/4.0/
-(function() {
-    d3.selectAll(".collapsible")
-        .on("click", function() {
-            d3.selectAll('.content[data-content-name="' + d3.select(this).attr("data-content-name") + '"]')
-                .style("display", function() {
-                    return d3.select(this).style("display") === "block" ? "none" : "block";
-                });
-            var symbolSpan = d3.select(this).select("span");
-            symbolSpan.html(symbolSpan.html() === "+" ? "-" : "+");
-        });
-    d3.selectAll(".expand-collapse-button")
-        .on("click", function() {
-            var mode = d3.select(this).html();
-            var contentType = d3.select(this).attr("data-content-type");
-            d3.select(this).html(mode === "expand all" ? "collapse all" : "expand all");
-            d3.selectAll('.content[data-content-type="' + contentType + '"]')
-                .style("display", function() {
-                    return mode === "expand all" ? "block" : "none";
-                });
-            d3.selectAll('.collapsible[data-content-type="' + contentType + '"]').select("span")
-                .html(function() {
-                    return mode === "expand all" ? "-" : "+";
-                });
-        });
-})();
-
-</script>
+<script src="index_files/index.js"></script>
