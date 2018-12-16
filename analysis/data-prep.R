@@ -78,7 +78,7 @@ auto_idade <- auto_idade %>%
 auto_cau <- auto_cau %>%
   rename(
     peril_code = CODIGO,
-    peril = CAUSA
+    cause = CAUSA
   )
 
 auto2_grupo <- auto2_grupo %>%
