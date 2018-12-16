@@ -25,8 +25,8 @@
   
   
   <!--  https://schema.org/Article -->
-  <meta property="article:published" itemprop="datePublished" content="2018-12-15"/>
-  <meta property="article:created" itemprop="dateCreated" content="2018-12-15"/>
+  <meta property="article:published" itemprop="datePublished" content="2018-12-16"/>
+  <meta property="article:created" itemprop="dateCreated" content="2018-12-16"/>
   <meta name="article:author" content="Author"/>
   <meta name="article:author" content="Author"/>
   
@@ -48,7 +48,7 @@
   <!--radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","bibliography"]}},"value":[{"type":"character","attributes":{},"value":["[DRAFT] Personal Auto Pricing"]},{"type":"character","attributes":{},"value":["A tutorial for P&C pricing using R.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","affiliation"]}},"value":[{"type":"character","attributes":{},"value":["Author"]},{"type":"character","attributes":{},"value":["Affiliation"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","affiliation"]}},"value":[{"type":"character","attributes":{},"value":["Author"]},{"type":"character","attributes":{},"value":["Affiliation"]}]}]},{"type":"character","attributes":{},"value":["2018-12-15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["radix::radix_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","toc","toc_depth"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[1]}]}]},{"type":"character","attributes":{},"value":["ref.bib"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","bibliography"]}},"value":[{"type":"character","attributes":{},"value":["[DRAFT] Personal Auto Pricing"]},{"type":"character","attributes":{},"value":["A tutorial for P&C pricing using R.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","affiliation"]}},"value":[{"type":"character","attributes":{},"value":["Author"]},{"type":"character","attributes":{},"value":["Affiliation"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","affiliation"]}},"value":[{"type":"character","attributes":{},"value":["Author"]},{"type":"character","attributes":{},"value":["Affiliation"]}]}]},{"type":"character","attributes":{},"value":["2018-12-16"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["radix::radix_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","toc","toc_depth"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[1]}]}]},{"type":"character","attributes":{},"value":["ref.bib"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -946,7 +946,7 @@
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"[DRAFT] Personal Auto Pricing","description":"A tutorial for P&C pricing using R.","authors":[{"author":"Author","authorURL":"#","affiliation":"Affiliation","affiliationURL":"#"},{"author":"Author","authorURL":"#","affiliation":"Affiliation","affiliationURL":"#"}],"publishedDate":"2018-12-15T00:00:00.000-05:00","citationText":"Author & Author, 2018"}
+{"title":"[DRAFT] Personal Auto Pricing","description":"A tutorial for P&C pricing using R.","authors":[{"author":"Author","authorURL":"#","affiliation":"Affiliation","affiliationURL":"#"},{"author":"Author","authorURL":"#","affiliation":"Affiliation","affiliationURL":"#"}],"publishedDate":"2018-12-16T00:00:00.000-05:00","citationText":"Author & Author, 2018"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -965,7 +965,7 @@
   
 ,   Author  (Affiliation)
   
-<br/>2018-12-15
+<br/>2018-12-16
 </div>
 
 <div class="d-article">
@@ -983,9 +983,12 @@
 <p>In this tutorial, we walk through an example of a pricing project using R, from preparing raw data for modeling to filing. Throughout the process, we provide reproducible code for each analysis task so the reader can follow along. We also attempt to adhere to the latest regulatory guidelines, so actuaries can better adopt the workflow presented in their work.</p>
 <h1 id="data">Data</h1>
 <p>In this tutorial, we use the publicly available data from Brazil’s Superintendence of Private Insurance (SUSEP). It maintains policy-characteristics-level data for personal auto from 2007 to 2014 for all insured vehicles in Brazil. This data source was chosen because it contains a variety of variables, from policyholder characteristics to losses by peril, to support a nontrivial analysis, and contains a variety of mapping tables so we can demonstrate a broader range of data manipulation work found in a typical pricing assignment. You can access the data from SUSEP’s <a href="http://www2.susep.gov.br/menuestatistica/Autoseg/principal.aspx">AUTOSEG</a> website.</p>
+<p><strong>(Talk about using 2013 data and validation scheme, see <a href="https://github.com/kasaai/pc-pricing-tutorial/issues/41">issues/41</a>)</strong></p>
 <h2 id="data-details">Data details</h2>
 <p>With the help of documentation accompanying the datasets, we compile a list of tables shown below.</p>
 <h4 id="main-tables">Main Tables</h4>
+<p><strong>(consider collapsing)</strong></p>
+<p><strong>(these need to be in better English see <a href="https://github.com/kasaai/pc-pricing-tutorial/issues/42">issues/42</a>)</strong></p>
 <table>
 <colgroup>
 <col style="width: 13%" />
@@ -1076,10 +1079,14 @@
 </tbody>
 </table>
 <p>The excerpts for each of the source tables, before any transformations, can be found at <a href="https://github.com/kasaai/pc-pricing-tutorial/blob/master/analysis/raw-table-excerpts.md">Raw Table Excerpts</a>.</p>
+<p>We note that, for the purpose of this exercise, we’ll use the <code>arq_casco</code> policy table since it is the only one that contains poilcyholder characteristics (sex and age.) We are unable to utilize <code>arq_casco3</code> and <code>arq_casco4</code>, which contain more granular location information, since there are no keys to join by; presumably the data is presented this way to preserve privacy.</p>
 <h2 id="data-prep">Data prep</h2>
-<p>Joins, mappings, etc.</p>
-<h2 id="validation-scheme">Validation scheme</h2>
-<p>Talk about holdout here or maybe earlier.</p>
+<p>Because the source data is in Portuguese, the first order of business is to obtain translations of the column names so we can all understand them. <strong>TODO: dictionary</strong></p>
+<p><strong>(Maybe include column translation code here)</strong></p>
+<p><strong>(Look at data summaries for reasonableness, note this is before formal “EDA”)</strong></p>
+<p>We observe that, with the exception of the numeric columns, all of the columns contain coded values which need to be mapped. By referencing the data documentation, we create the data model diagram below <strong>TODO: actually do this</strong>.</p>
+<p><strong>(Maybe include data joining snippet here, see <a href="https://github.com/kasaai/pc-pricing-tutorial/issues/49">issues/49</a> and <a href="https://github.com/kasaai/pc-pricing-tutorial/issues/44">issues/44</a>)</strong></p>
+<p><strong>(Inspect combined table for reasonableness and reconcile with summaries of mapping tables.)</strong></p>
 <h1 id="eda">EDA</h1>
 <p>Distributions “One-way” analysis</p>
 <h1 id="modeling">Modeling</h1>

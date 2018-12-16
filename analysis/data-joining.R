@@ -1,6 +1,8 @@
 library(pricingtutorial)
 library(tidyverse)
 
+# Read the main policy table,
+#  specifying column types explicitly.
 risks_table <- read_autoseg(
   "external_data/Autoseg2012B/arq_casco_comp.csv",
   col_types = cols(
@@ -81,6 +83,7 @@ risks_table_mapped <- risks_table %>%
   left_join(auto_idade, by = c(IDADE = "code")) %>%
   left_join(auto2_grupo, by = "vehicle_group_code") %>%
   rename(
+    # Translate colum names
     vehicle_year = ANO_MODELO,
     data_year = ENVIO,
     exposure = EXPOSICAO1,
@@ -94,6 +97,7 @@ risks_table_mapped <- risks_table %>%
     -EXPOSICAO2, -PREMIO2
   ) %>%
   rename_at(
+    # Translate count/amount and perils
     vars(matches("^(FREQ_SIN|INDENIZ)")),
     function(x) {
       str_split(x, "(?=[0-9])") %>%
