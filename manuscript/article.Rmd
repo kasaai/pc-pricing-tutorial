@@ -28,11 +28,17 @@ In this tutorial, we walk through an example of a pricing project using R, from 
 
 In this tutorial, we use the publicly available data from Brazil's Superintendence of Private Insurance (SUSEP). It maintains policy-characteristics-level data for personal auto from 2007 to 2014 for all insured vehicles in Brazil. This data source was chosen because it contains a variety of variables, from policyholder characteristics to losses by peril, to support a nontrivial analysis, and contains a variety of mapping tables so we can demonstrate a broader range of data manipulation work found in a typical pricing assignment. You can access the data from SUSEP's [AUTOSEG](http://www2.susep.gov.br/menuestatistica/Autoseg/principal.aspx) website.
 
+**(Talk about using 2013 data and validation scheme, see [issues/41](https://github.com/kasaai/pc-pricing-tutorial/issues/41))**
+
 ## Data details
 
 With the help of documentation accompanying the datasets, we compile a list of tables shown below.
 
 #### Main Tables
+
+**(consider collapsing)**
+
+**(these need to be in better English see [issues/42](https://github.com/kasaai/pc-pricing-tutorial/issues/42))**
 
 | File      | Description                                                          |
 |-----------|----------------------------------------------------------------------|
@@ -59,13 +65,21 @@ With the help of documentation accompanying the datasets, we compile a list of t
 
 The excerpts for each of the source tables, before any transformations, can be found at [Raw Table Excerpts](https://github.com/kasaai/pc-pricing-tutorial/blob/master/analysis/raw-table-excerpts.md).
 
+We note that, for the purpose of this exercise, we'll use the `arq_casco` policy table since it is the only one that contains poilcyholder characteristics (sex and age.) We are unable to utilize `arq_casco3` and `arq_casco4`, which contain more granular location information, since there are no keys to join by; presumably the data is presented this way to preserve privacy.
+
 ## Data prep
 
-Joins, mappings, etc.
+Because the source data is in Portuguese, the first order of business is to obtain translations of the column names so we can all understand them. **TODO: dictionary**
 
-## Validation scheme
+**(Maybe include column translation code here)**
 
-Talk about holdout here or maybe earlier.
+**(Look at data summaries for reasonableness, note this is before formal "EDA")**
+
+We observe that, with the exception of the numeric columns, all of the columns contain coded values which need to be mapped. By referencing the data documentation, we create the data model diagram below **TODO: actually do this**.
+
+**(Maybe include data joining snippet here, see [issues/49](https://github.com/kasaai/pc-pricing-tutorial/issues/49) and [issues/44](https://github.com/kasaai/pc-pricing-tutorial/issues/44))**
+
+**(Inspect combined table for reasonableness and reconcile with summaries of mapping tables.)**
 
 # EDA
 
