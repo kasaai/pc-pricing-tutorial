@@ -53,7 +53,7 @@
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["images/598px-CRISP-DM_Process_Diagram.png","public/index_files/bowser-1.9.3/bowser.min.js","public/index_files/distill-2.2.21/template.v2.js","public/index_files/jquery-1.11.3/jquery.min.js","public/index_files/webcomponents-2.0.0/webcomponents.js","public/index.html","ref.bib"]}
+  {"type":"character","attributes":{},"value":["public/index_files/bowser-1.9.3/bowser.min.js","public/index_files/distill-2.2.21/template.v2.js","public/index_files/jquery-1.11.3/jquery.min.js","public/index_files/webcomponents-2.0.0/webcomponents.js","public/index.html","ref.bib"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -979,6 +979,55 @@
 </ul>
 </nav>
 <hr class="d-toc-separator"/>
+<div class="layout-chunk" data-layout="l-body">
+<style type="text/css">
+.collapsible {
+  cursor: pointer;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 20px;
+  font-weight: 700;
+  background-color: white;
+  color: rgba(0, 0, 0, 0.8);
+  padding: 0.5em;
+  margin: 0.2em;
+  margin-left: 0;
+  padding-left: 0;
+  transform: translateX(0px);
+  transition: 
+      color 0.1s ease-out,
+      transform 0.25s ease;
+}
+
+.collapsible:hover {
+  border-bottom: 1px solid inset;
+  color: rgba(0, 0, 0, 0.4);
+  transform: translateX(10px);
+  transition: 
+      transform 0.25s ease;
+}
+
+d-article .content {
+  display: none;
+  overflow: hidden;
+  background-color: none;
+}
+
+.expand-collapse-button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  font-size: 18px;
+  font-weight: 700;
+  float: right;
+}
+</style>
+</div>
+<script src="https://d3js.org/d3.v5.min.js"></script>
 <p>Advances in machine learning and open source technologies are having a profound impact on many industries, and insurance is no exception. In the US, both the Society of Actuaries and CAS Institute list knowledge of R as a requirement in exam syllabi <span class="citation" data-cites="soapa cspaexam">(Society of Actuaries <a href="#ref-soapa">2018</a>; CAS Institute <a href="#ref-cspaexam">2018</a>)</span>. In a draft white paper on regulatory review of predictive models, the National Association of Insurance Commisioners (NAIC) recognizes that actuaries are using techniques such as random forests and neural networks in predictive modeling projects <span class="citation" data-cites="naicwhitepaper">(Casualty Actuarial and Statistical (C) Task Force <a href="#ref-naicwhitepaper">2010</a>)</span>. However, while much has been written on modeling methodology for pricing, there have been few freely available resources that include reproducible code; one such example is <span class="citation" data-cites="alfredo">(Alfredo <a href="#ref-alfredo">2011</a>)</span>. To the best of our knowledge, prior to the current article, no tutorials exist that show the end-to-end pricing workflow.</p>
 <p>In this tutorial, we walk through an example of a pricing project using R, from preparing raw data for modeling to filing. Throughout the process, we provide reproducible code for each analysis task so the reader can follow along. We also attempt to adhere to the latest regulatory guidelines, so actuaries can better adopt the workflow presented in their work.</p>
 <h1 id="data">Data</h1>
@@ -986,9 +1035,14 @@
 <p><strong>(Talk about using 2013 data and validation scheme, see <a href="https://github.com/kasaai/pc-pricing-tutorial/issues/41">issues/41</a>)</strong></p>
 <h2 id="data-details">Data details</h2>
 <p>With the help of documentation accompanying the datasets, we compile a list of tables shown below.</p>
-<h4 id="main-tables">Main Tables</h4>
-<p><strong>(consider collapsing)</strong></p>
 <p><strong>(these need to be in better English see <a href="https://github.com/kasaai/pc-pricing-tutorial/issues/42">issues/42</a>)</strong></p>
+<div style="width: 100%">
+<p><button class="expand-collapse-button" data-content-type="tablelist">expand all</button></p>
+</div>
+<button class="collapsible" data-content-name="maintables" data-content-type="tablelist">
+Main Tables<span style="float: right;">+</span>
+</button>
+<div class="content" data-content-name="maintables" data-content-type="tablelist">
 <table>
 <colgroup>
 <col style="width: 13%" />
@@ -1023,7 +1077,11 @@
 </tr>
 </tbody>
 </table>
-<h4 id="auxiliary-tables">Auxiliary Tables</h4>
+</div>
+<button class="collapsible" data-content-name="auxtables" data-content-type="tablelist">
+Auxiliary Tables<span style="float: right;">+</span>
+</button>
+<div class="content" data-content-name="auxtables" data-content-type="tablelist">
 <table>
 <colgroup>
 <col style="width: 15%" />
@@ -1078,6 +1136,7 @@
 </tr>
 </tbody>
 </table>
+</div>
 <p>The excerpts for each of the source tables, before any transformations, can be found at <a href="https://github.com/kasaai/pc-pricing-tutorial/blob/master/analysis/raw-table-excerpts.md">Raw Table Excerpts</a>.</p>
 <p>We note that, for the purpose of this exercise, we’ll use the <code>arq_casco</code> policy table since it is the only one that contains poilcyholder characteristics (sex and age.) We are unable to utilize <code>arq_casco3</code> and <code>arq_casco4</code>, which contain more granular location information, since there are no keys to join by; presumably the data is presented this way to preserve privacy.</p>
 <h2 id="data-prep">Data prep</h2>
@@ -1093,6 +1152,35 @@
 <p>Variable selection, modeling, etc.</p>
 <h1 id="rating-plan">Rating plan</h1>
 <p>Transfer results to plan, dislocation analysis, etc.</p>
+<script type="text/javascript">
+
+(function() {
+    d3.selectAll(".collapsible")
+        .on("click", function() {
+            d3.selectAll('.content[data-content-name="' + d3.select(this).attr("data-content-name") + '"]')
+                .style("display", function() {
+                    return d3.select(this).style("display") === "block" ? "none" : "block";
+                });
+            var symbolSpan = d3.select(this).select("span");
+            symbolSpan.html(symbolSpan.html() === "+" ? "-" : "+");
+        });
+    d3.selectAll(".expand-collapse-button")
+        .on("click", function() {
+            var mode = d3.select(this).html();
+            var contentType = d3.select(this).attr("data-content-type");
+            d3.select(this).html(mode === "expand all" ? "collapse all" : "expand all");
+            d3.selectAll('.content[data-content-type="' + contentType + '"]')
+                .style("display", function() {
+                    return mode === "expand all" ? "block" : "none";
+                });
+            d3.selectAll('.collapsible[data-content-type="' + contentType + '"]').select("span")
+                .html(function() {
+                    return mode === "expand all" ? "-" : "+";
+                });
+        });
+})();
+
+</script>
 <div id="refs" class="references">
 <div id="ref-alfredo">
 <p>Alfredo, Spedicato Giorgio. 2011. “Third Party Motor Liability Ratemaking with R.” Casualty Actuarial Society. <a href="https://www.casact.org/research/wp/papers/working-paper-spedicato-%202012-06.pdf">https://www.casact.org/research/wp/papers/working-paper-spedicato-%202012-06.pdf</a>.</p>
