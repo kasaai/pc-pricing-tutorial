@@ -156,7 +156,8 @@ Transfer results to plan, dislocation analysis, etc.
 
 
 <script type="text/javascript">
-
+// The expand/collapse functionality is adapted from https://github.com/distillpub/post--feature-wise-transformations
+//   which is licensed under CC BY 4.0 https://creativecommons.org/licenses/by/4.0/
 (function() {
     d3.selectAll(".collapsible")
         .on("click", function() {
