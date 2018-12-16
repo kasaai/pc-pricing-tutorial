@@ -45,7 +45,7 @@ With the help of documentation accompanying the datasets, we compile a list of t
 
 <button class="collapsible" data-content-name="maintables" data-content-type="tablelist">Main Tables<span style="float: right;">+</span></button>
 
-<div class="content" content-name="maintables" content-type="tablelist">
+<div class="content l-body-outset" content-name="maintables" content-type="tablelist">
 
 | File      | Description                                                          |
 |-----------|----------------------------------------------------------------------|
@@ -59,8 +59,9 @@ With the help of documentation accompanying the datasets, we compile a list of t
 
 <button class="collapsible" data-content-name="auxtables" data-content-type="tablelist">Auxiliary Tables<span style="float: right;">+</span></button>
 
-<div class="content" content-name="auxtables" content-type="tablelist">
+<div class="content l-body-outset" content-name="auxtables" content-type="tablelist">
 
+::: l-body-outset
 | File        | Description                                                          |
 |-------------|----------------------------------------------------------------------|
 | auto2_vei   | FIPE code and description of each vehicle model, in addition to the group code to which it belongs |
@@ -73,6 +74,7 @@ With the help of documentation accompanying the datasets, we compile a list of t
 | auto_reg    | Code and description of regions of circulation                       |
 | auto_sexo   | Code and description of sex (male, female, legal)                    |
 | auto_city   | Code and name of cities                                              |
+:::
 
 </div>
 
