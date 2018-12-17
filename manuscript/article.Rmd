@@ -157,7 +157,7 @@ For the policy table, with the exception of the numeric columns, all of the colu
 We then perform a series of joins and extract the relevant columns to create a combined data frame:
 
 
-```{r eval = FALSE}
+```{r eval = FALSE, echo = TRUE}
 risks_table_mapped <- risks_table %>%
   left_join(auto_cat, by = "vehicle_category_code") %>%
   left_join(auto_reg, by = "region_code") %>%
