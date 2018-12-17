@@ -154,29 +154,9 @@ print_summary(auto2_grupo)
 
 For the policy table, with the exception of the numeric columns, all of the columns contain coded values which need to be mapped. By referencing the data documentation, we observe the data model diagram below **TODO: actually do this**.
 
-We then perform a series of joins and extract the relevant columns to create a combined data frame:
+**(need more details here [issues/44](https://github.com/kasaai/pc-pricing-tutorial/issues/44))**
 
-
-```{r eval = FALSE, echo = TRUE}
-risks_table_mapped <- risks_table %>%
-  left_join(auto_cat, by = "vehicle_category_code") %>%
-  left_join(auto_reg, by = "region_code") %>%
-  left_join(auto2_vei, by = "vehicle_code") %>%
-  left_join(auto_sexo, by = "sex_code") %>%
-  left_join(auto_idade, by = "age_code") %>%
-  left_join(auto2_grupo, by = "vehicle_group_code") %>%
-  select(
-    # stuff we mapped
-    -ends_with("_code"),
-    # stuff we don't need
-    -EXPOSICAO2, -PREMIO2
-  ) %>%
-  mutate_if(is.character, trimws)
-```
-
-**(see [issues/49](https://github.com/kasaai/pc-pricing-tutorial/issues/49) and [issues/44](https://github.com/kasaai/pc-pricing-tutorial/issues/44))**
-
-Then, we inspect the result for reasonableness
+We then perform a series of joins and extract the relevant columns to create a combined data frame, then inspect the result for reasonableness:
 
 <button class="collapsible" data-content-name="combined_summary" data-content-type="tablelist">Combined Table Summary<span style="float: right;">+</span></button>
 

@@ -1769,26 +1769,8 @@ n variables: 2</p>
 </div>
 </div>
 <p>For the policy table, with the exception of the numeric columns, all of the columns contain coded values which need to be mapped. By referencing the data documentation, we observe the data model diagram below <strong>TODO: actually do this</strong>.</p>
-<p>We then perform a series of joins and extract the relevant columns to create a combined data frame:</p>
-<div class="layout-chunk" data-layout="l-body">
-<pre class="r"><code>
-risks_table_mapped &lt;- risks_table %&gt;%
-  left_join(auto_cat, by = &quot;vehicle_category_code&quot;) %&gt;%
-  left_join(auto_reg, by = &quot;region_code&quot;) %&gt;%
-  left_join(auto2_vei, by = &quot;vehicle_code&quot;) %&gt;%
-  left_join(auto_sexo, by = &quot;sex_code&quot;) %&gt;%
-  left_join(auto_idade, by = &quot;age_code&quot;) %&gt;%
-  left_join(auto2_grupo, by = &quot;vehicle_group_code&quot;) %&gt;%
-  select(
-    # stuff we mapped
-    -ends_with(&quot;_code&quot;),
-    # stuff we don&#39;t need
-    -EXPOSICAO2, -PREMIO2
-  ) %&gt;%
-  mutate_if(is.character, trimws)</code></pre>
-</div>
-<p><strong>(see <a href="https://github.com/kasaai/pc-pricing-tutorial/issues/49">issues/49</a> and <a href="https://github.com/kasaai/pc-pricing-tutorial/issues/44">issues/44</a>)</strong></p>
-<p>Then, we inspect the result for reasonableness</p>
+<p><strong>(need more details here <a href="https://github.com/kasaai/pc-pricing-tutorial/issues/44">issues/44</a>)</strong></p>
+<p>We then perform a series of joins and extract the relevant columns to create a combined data frame, then inspect the result for reasonableness:</p>
 <button class="collapsible" data-content-name="combined_summary" data-content-type="tablelist">
 Combined Table Summary<span style="float: right;">+</span>
 </button>
