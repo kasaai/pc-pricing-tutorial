@@ -175,6 +175,35 @@ print_summary(risks_table_mapped)
 Distributions
 "One-way" analysis
 
+```{r include = FALSE, cache = TRUE}
+source("analysis/map.R")
+```
+
+## Exposures by state
+
+(something like this, will need to add tooltip and cut out Brazil)
+
+```{r, layout = "l-body-outset"}
+brazil %>%
+  leaflet() %>%
+  addTiles() %>%
+  addPolygons(
+    fillColor = ~pal(exposures),
+    weight = 2,
+    opacity = 1,
+    color = "white",
+    dashArray = "3",
+    fillOpacity = 0.7,
+    highlight = highlightOptions(
+      weight = 5,
+      color = "#666",
+      dashArray = "",
+      fillOpacity = 0.7,
+      bringToFront = TRUE)
+  ) %>%
+  setView(lng = -53.034713, lat =  -9.269617, zoom = 4)
+```
+
 # Modeling
 
 Variable selection, modeling, etc.
