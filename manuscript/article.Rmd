@@ -41,7 +41,7 @@ With the help of documentation accompanying the datasets, we compile a list of t
 **(these need to be in better English see [issues/42](https://github.com/kasaai/pc-pricing-tutorial/issues/42))**
 
 <div style="width: 100%">
-  <button class="expand-collapse-button" data-content-type="tablelist">expand all</button>
+<button class="expand-collapse-button" data-content-type="tablelist">expand all</button>
 </div>
 
 <button class="collapsible" data-content-name="maintables" data-content-type="tablelist">Main Tables<span style="float: right;">+</span></button>
@@ -87,15 +87,108 @@ We note that, for the purpose of this exercise, we'll use the `arq_casco` policy
 
 Because the source data is in Portuguese, the first order of business is to obtain translations of the column names so we can all understand them. **TODO: dictionary**
 
-**(Maybe include column translation code here)**
+Once that's done, we'll take an initial look at the tables:
 
-**(Look at data summaries for reasonableness, note this is before formal "EDA")**
+```{r include = FALSE, cache = TRUE}
+source("analysis/data-prep.R")
+```
 
-We observe that, with the exception of the numeric columns, all of the columns contain coded values which need to be mapped. By referencing the data documentation, we create the data model diagram below **TODO: actually do this**.
+```{r include = FALSE}
+print_summary <- function(df) {
+  df %>%
+    skimr::skim() %>%
+    skimr::kable()
+  cat("\n")
+  head(df, 5) %>%
+    rmarkdown::paged_table()
+}
+```
 
-**(Maybe include data joining snippet here, see [issues/49](https://github.com/kasaai/pc-pricing-tutorial/issues/49) and [issues/44](https://github.com/kasaai/pc-pricing-tutorial/issues/44))**
+<button class="collapsible" data-content-name="summaries" data-content-type="tablelist">Table Summaries<span style="float: right;">+</span></button>
 
-**(Inspect combined table for reasonableness and reconcile with summaries of mapping tables.)**
+<div class="content l-page" content-name="summaries">
+
+### arq_casco
+
+```{r echo = FALSE, results='asis'}
+print_summary(risks_table)
+```
+
+### auto_cat
+
+```{r echo = FALSE, results='asis'}
+print_summary(auto_cat)
+```
+
+### auto_reg
+
+```{r echo = FALSE, results='asis'}
+print_summary(auto_reg)
+```
+
+### auto2_vei
+
+```{r echo = FALSE, results='asis'}
+print_summary(auto2_vei)
+```
+
+### auto_idade
+
+```{r echo = FALSE, results='asis'}
+print_summary(auto_idade)
+```
+
+### auto_cau
+
+```{r echo = FALSE, results='asis'}
+print_summary(auto_cau)
+```
+
+### auto2_grupo
+
+```{r echo = FALSE, results='asis'}
+print_summary(auto2_grupo)
+```
+
+</div>
+
+For the policy table, with the exception of the numeric columns, all of the columns contain coded values which need to be mapped. By referencing the data documentation, we observe the data model diagram below **TODO: actually do this**.
+
+We then perform a series of joins and extract the relevant columns to create a combined data frame:
+
+
+```{r eval = FALSE}
+risks_table_mapped <- risks_table %>%
+  left_join(auto_cat, by = "vehicle_category_code") %>%
+  left_join(auto_reg, by = "region_code") %>%
+  left_join(auto2_vei, by = "vehicle_code") %>%
+  left_join(auto_sexo, by = "sex_code") %>%
+  left_join(auto_idade, by = "age_code") %>%
+  left_join(auto2_grupo, by = "vehicle_group_code") %>%
+  select(
+    # stuff we mapped
+    -ends_with("_code"),
+    # stuff we don't need
+    -EXPOSICAO2, -PREMIO2
+  ) %>%
+  mutate_if(is.character, trimws)
+```
+
+**(see [issues/49](https://github.com/kasaai/pc-pricing-tutorial/issues/49) and [issues/44](https://github.com/kasaai/pc-pricing-tutorial/issues/44))**
+
+Then, we inspect the result for reasonableness
+
+<button class="collapsible" data-content-name="combined_summary" data-content-type="tablelist">Combined Table Summary<span style="float: right;">+</span></button>
+
+<div class="content l-page" content-name="combined_summary">
+
+```{r echo = FALSE, results='asis'}
+print_summary(risks_table_mapped)
+```
+
+</div>
+
+(talk about missing values)
 
 # EDA
 
