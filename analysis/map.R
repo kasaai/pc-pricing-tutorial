@@ -31,6 +31,8 @@ earth <-
 
 bra_cutout <- sf::st_difference(earth, bra_layer0)
 
+labels <- paste0("<b>",brazil$NAME_1,"</b><br>","Exposures: ", scales::comma(brazil$exposures))
+
 brazil %>%
   leaflet(options = leafletOptions(minZoom = 4)) %>%
   addTiles() %>%
@@ -48,6 +50,7 @@ brazil %>%
     color = "white",
     dashArray = "3",
     fillOpacity = 0.7,
+    label = lapply(labels, htmltools::HTML),
     highlight = highlightOptions(
       weight = 5,
       color = "#666",
