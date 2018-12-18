@@ -8,6 +8,7 @@ exposures_by_hasc <- risks_table_mapped %>%
   group_by(hasc) %>%
   summarize(exposures = sum(exposure))
 
+bra_layer0 <- sf::st_read("external_data/gadm36_BRA_gpkg/gadm36_BRA.gpkg", layer = "gadm36_BRA_0")
 bra_layer1 <- sf::st_read("external_data/gadm36_BRA_gpkg/gadm36_BRA.gpkg", layer = "gadm36_BRA_1")
 
 brazil <- bra_layer1 %>%
@@ -15,10 +16,34 @@ brazil <- bra_layer1 %>%
 
 bins <- c(0, 10^3,10^4, 10^5, 10^6, Inf)
 pal <- colorBin("YlOrRd", domain = brazil$exposures, bins = bins)
+<<<<<<< HEAD
+=======
+
+bra_bbox <- sf::st_bbox(bra_layer1) %>% unname
+
+earth <-
+  sf::st_polygon(x = list(rbind(c( 360, -360),
+                                c( 360,  360),
+                                c(-360,  360),
+                                c(-360, -360),
+                                c( 360, -360)))) %>%
+  sf::st_sfc(crs = sf::st_crs(bra_layer0), check_ring_dir = T) %>%
+  sf::st_sf()
+
+
+bra_cutout <- sf::st_difference(earth, bra_layer0)
+>>>>>>> add map cutout
 
 brazil %>%
-  leaflet() %>%
+  leaflet(options = leafletOptions(minZoom = 4)) %>%
   addTiles() %>%
+  addPolygons(
+    data = bra_cutout,
+    weight  = 0,
+    opacity = 1,
+    color = "white",
+    fillOpacity = 1
+  ) %>%
   addPolygons(
     fillColor = ~pal(exposures),
     weight = 2,
@@ -33,4 +58,5 @@ brazil %>%
       fillOpacity = 0.7,
       bringToFront = TRUE)
   ) %>%
-  setView(lng = -53.034713, lat =  -9.269617, zoom = 4)
+  setMaxBounds(bra_bbox[1], bra_bbox[2], bra_bbox[3], bra_bbox[4]) %>%
+  setView(mean(bra_bbox[c(1,3)]), mean(bra_bbox[c(2,4)]), zoom = 4)
