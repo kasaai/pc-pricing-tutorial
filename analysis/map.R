@@ -16,8 +16,6 @@ brazil <- bra_layer1 %>%
 
 bins <- c(0, 10^3,10^4, 10^5, 10^6, Inf)
 pal <- colorBin("YlOrRd", domain = brazil$exposures, bins = bins)
-<<<<<<< HEAD
-=======
 
 bra_bbox <- sf::st_bbox(bra_layer1) %>% unname
 
@@ -32,7 +30,6 @@ earth <-
 
 
 bra_cutout <- sf::st_difference(earth, bra_layer0)
->>>>>>> add map cutout
 
 labels <- paste0("<b>",brazil$NAME_1,"</b><br>","Exposures: ", scales::comma(brazil$exposures))
 
