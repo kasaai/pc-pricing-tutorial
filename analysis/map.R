@@ -14,7 +14,7 @@ brazil <- bra_layer1 %>%
   left_join(exposures_by_hasc, by = c(HASC_1 = "hasc"))
 
 bins <- c(0, 10^3,10^4, 10^5, 10^6, Inf)
-pal <- colorBin("YlOrRd", domain = joined$exposures, bins = bins)
+pal <- colorBin("YlOrRd", domain = brazil$exposures, bins = bins)
 
 brazil %>%
   leaflet() %>%
