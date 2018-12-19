@@ -25,7 +25,7 @@ earth <-
                                 c(-360,  360),
                                 c(-360, -360),
                                 c( 360, -360)))) %>%
-  sf::st_sfc(crs = sf::st_crs(bra_layer0), check_ring_dir = T) %>% 
+  sf::st_sfc(crs = sf::st_crs(bra_layer0), check_ring_dir = T) %>%
   sf::st_sf()
 
 
@@ -58,5 +58,5 @@ brazil %>%
       fillOpacity = 0.7,
       bringToFront = TRUE)
   ) %>%
-  setMaxBounds(bra_bbox[1], bra_bbox[2], bra_bbox[3], bra_bbox[4]) %>% 
+  setMaxBounds(bra_bbox[1], bra_bbox[2], bra_bbox[3], bra_bbox[4]) %>%
   setView(mean(bra_bbox[c(1,3)]), mean(bra_bbox[c(2,4)]), zoom = 4)
