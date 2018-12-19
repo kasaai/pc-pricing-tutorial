@@ -11,6 +11,9 @@ exposures_by_hasc <- risks_table_mapped %>%
 bra_layer0 <- sf::st_read("external_data/gadm36_BRA_gpkg/gadm36_BRA.gpkg", layer = "gadm36_BRA_0")
 bra_layer1 <- sf::st_read("external_data/gadm36_BRA_gpkg/gadm36_BRA.gpkg", layer = "gadm36_BRA_1")
 
+bra_layer0 <- bra_layer0 %>% rmapshaper::ms_simplify()
+bra_layer1 <- bra_layer1 %>% rmapshaper::ms_simplify()
+
 brazil <- bra_layer1 %>%
   left_join(exposures_by_hasc, by = c(HASC_1 = "hasc"))
 
