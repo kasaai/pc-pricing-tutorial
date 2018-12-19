@@ -20,14 +20,15 @@ brazil <- bra_layer1 %>%
 bins <- c(0, 10^3,10^4, 10^5, 10^6, Inf)
 pal <- colorBin("YlOrRd", domain = brazil$exposures, bins = bins)
 
-bra_bbox <- sf::st_bbox(bra_layer1) %>% unname
+bra_bbox <- sf::st_bbox(bra_layer1) %>% unname()
 
-earth <-
-  sf::st_polygon(x = list(rbind(c( 360, -360),
-                                c( 360,  360),
-                                c(-360,  360),
-                                c(-360, -360),
-                                c( 360, -360)))) %>%
+earth <-sf::st_polygon(list(rbind(
+  c(360, -360),
+  c(360, 360),
+  c(-360, 360),
+  c(-360, -360),
+  c(360, -360)
+))) %>%
   sf::st_sfc(crs = sf::st_crs(bra_layer0), check_ring_dir = T) %>%
   sf::st_sf()
 
