@@ -8,6 +8,9 @@ date: "`r Sys.Date()`"
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(pricingtutorial)
+library(fs)
+
+data_dir <- path(here::here(), "external_data", "Autoseg2012B")
 
 read_excerpt <- function(tbl, data_dir, n_max = 10) {
   get_num_cols <- function(file) {
@@ -30,7 +33,7 @@ Excerpts of the main tables are provided below.
 
 ```{r, echo = FALSE}
 arq_casco_comp <- read_excerpt(
-  tbl = "arq_casco_comp", data_dir = "external_data/Autoseg2012B/"
+  tbl = "arq_casco_comp", data_dir = data_dir
 )
 knitr::kable(arq_casco_comp)
 ```
@@ -39,7 +42,7 @@ knitr::kable(arq_casco_comp)
 
 ```{r, echo = FALSE}
 arq_casco3_comp <- read_excerpt(
-  tbl = "arq_casco3_comp", data_dir = "external_data/Autoseg2012B/"
+  tbl = "arq_casco3_comp", data_dir = data_dir
 )
 knitr::kable(arq_casco3_comp)
 ```
@@ -48,7 +51,7 @@ knitr::kable(arq_casco3_comp)
 
 ```{r, echo = FALSE}
 arq_casco4_comp <- read_excerpt(
-  tbl = "arq_casco4_comp", data_dir = "external_data/Autoseg2012B/"
+  tbl = "arq_casco4_comp", data_dir = data_dir
 )
 knitr::kable(arq_casco4_comp)
 ```
@@ -57,7 +60,7 @@ knitr::kable(arq_casco4_comp)
 
 ```{r, echo = FALSE}
 prem_reg <- read_excerpt(
-  tbl = "PremReg", data_dir = "external_data/Autoseg2012B/"
+  tbl = "PremReg", data_dir = data_dir
 )
 knitr::kable(prem_reg)
 ```
@@ -66,7 +69,7 @@ knitr::kable(prem_reg)
 
 ```{r, echo = FALSE}
 sin_reg <- read_excerpt(
-  tbl = "SinReg", data_dir = "external_data/Autoseg2012B/"
+  tbl = "SinReg", data_dir = data_dir
 )
 knitr::kable(sin_reg)
 ```
@@ -76,16 +79,16 @@ knitr::kable(sin_reg)
 Excerpts of auxiliary tables are provided below.
 
 ```{r, echo = FALSE, include = FALSE}
-auto_cat <- read_autoseg("external_data/Autoseg2012B/auto_cat.csv")
-auto_cau <- read_autoseg("external_data/Autoseg2012B/auto_cau.csv")
-auto_cep <- read_autoseg("external_data/Autoseg2012B/auto_cep.csv")
-auto_cidade <- read_autoseg("external_data/Autoseg2012B/auto_cidade.csv")
-auto_cob <- read_autoseg("external_data/Autoseg2012B/auto_cob.csv")
-auto_idade <- read_autoseg("external_data/Autoseg2012B/auto_idade.csv")
-auto_reg <- read_autoseg("external_data/Autoseg2012B/auto_reg.csv")
-auto_sexo <- read_autoseg("external_data/Autoseg2012B/auto_sexo.csv")
-auto2_grupo <- read_autoseg("external_data/Autoseg2012B/auto2_grupo.csv")
-auto2_vei <- read_autoseg("external_data/Autoseg2012B/auto2_vei.csv")
+auto_cat <- read_autoseg(path(data_dir, "auto_cat.csv"))
+auto_cau <- read_autoseg(path(data_dir, "auto_cau.csv"))
+auto_cep <- read_autoseg(path(data_dir,"auto_cep.csv"))
+auto_cidade <- read_autoseg(path(data_dir,"auto_cidade.csv"))
+auto_cob <- read_autoseg(path(data_dir,"auto_cob.csv"))
+auto_idade <- read_autoseg(path(data_dir,"auto_idade.csv"))
+auto_reg <- read_autoseg(path(data_dir,"auto_reg.csv"))
+auto_sexo <- read_autoseg(path(data_dir,"auto_sexo.csv"))
+auto2_grupo <- read_autoseg(path(data_dir,"auto2_grupo.csv"))
+auto2_vei <- read_autoseg(path(data_dir,"auto2_vei.csv"))
 ```
 
 ### auto_cat
