@@ -1,4 +1,4 @@
-[![Travis build status](https://travis-ci.org/kasaai/pc-pricing-tutorial.svg?branch=master)](https://travis-ci.org/kasaai/pc-pricing-tutorial) [![Gitter chat](https://badges.gitter.im/kasa-official/gitter.png)](https://gitter.im/kasa-official/pc-pricing-tutorial)
+[![Travis build status](https://travis-ci.org/kasaai/pc-pricing-tutorial.svg?branch=master)](https://travis-ci.org/kasaai/pc-pricing-tutorial)
 
 # P&C Pricing Tutorial
 
@@ -30,4 +30,4 @@ The `.gpkg` files for drawing state boundaries can be downloaded from [https://b
 
 ## Contributing
 
-Interested in joining in on the fun? Look at the [issues](https://github.com/kasaai/pc-pricing-tutorial/issues) page to see what tasks need help and check out [contributing guidelines](https://github.com/kasaai/pc-pricing-tutorial/blob/master/CONTRIBUTING.md). Not familiar with R but want to lend your actuarial expertise? Please feel free to comment on issues to share your thoughts or open new issues to let us know how we can do things better!
+Interested in joining in on the fun? Look at the [issues](https://github.com/kasaai/pc-pricing-tutorial/issues) page to see what tasks need help and check out [contributing guidelines](https://github.com/kasaai/pc-pricing-tutorial/blob/master/CONTRIBUTING.md). Not familiar with R but want to lend your actuarial expertise? Please feel free to comment on issues to share your thoughts or open new issues to let us know how we can do things better! We also have a [Slack](https://join.slack.com/t/kasaai/shared_invite/enQtNTY4OTQ0OTcyODY1LTU3YzFjMjFhY2YyMGE3MjRkM2Y1MGNlZjY0NWQ4MGI2NmVhOWQyODRjZTZmMWQ4MzBkMDliYmNjYmI2NzVmZjY) workspace set up.
