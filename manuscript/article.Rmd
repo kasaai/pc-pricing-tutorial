@@ -9,7 +9,7 @@ author:
     affiliation: Affiliation
 date: "`r Sys.Date()`"
 output: 
-    radix::radix_article:
+    distill::distill_article:
       self_contained: false
       toc: true
       toc_depth: 1
@@ -91,11 +91,11 @@ Because the source data is in Portuguese, the first order of business is to obta
 
 Once that's done, we'll take an initial look at the tables:
 
-```{r include = FALSE, cache = TRUE}
+```{r include = FALSE}
 source("analysis/data-prep.R")
 ```
 
-```{r include = FALSE, cache = TRUE}
+```{r include = FALSE}
 print_summary <- function(df) {
   df %>%
     skimr::skim() %>%
@@ -177,7 +177,7 @@ print_summary(risks_table_mapped)
 Distributions
 "One-way" analysis
 
-```{r include = FALSE, cache = TRUE}
+```{r include = FALSE}
 source("analysis/map.R")
 ```
 
