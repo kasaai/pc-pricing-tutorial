@@ -4,9 +4,9 @@
 #' @param ... Additional arguments passed to `readr::read_delim()`.
 #' @export
 read_autoseg <- function(file, ...) {
-  readr::read_delim(
+  vroom::vroom(
     file, delim = ";", 
-    locale = readr::locale(decimal_mark = ",", encoding = "ISO-8859-1"), 
+    locale = vroom::locale(decimal_mark = ",", encoding = "ISO-8859-1"), 
     ...
   )
 }
