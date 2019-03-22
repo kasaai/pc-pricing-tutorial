@@ -17,9 +17,11 @@ Imports:
     fs,
     glue,
     purrr,
-    readr,
+    vroom,
     stringr,
     tibble
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.0
+Remotes:
+    jimhester/vroom
