@@ -12,7 +12,7 @@ While we won't be able to emulate all the beauracracy/politics associated with d
 
 ## Data Access
 
-We're using the publicly available data from the Superintendência de Seguros Privados of Brazil. The data can be downloaded from [http://www2.susep.gov.br/menuestatistica/Autoseg/principal.aspx](http://www2.susep.gov.br/menuestatistica/Autoseg/principal.aspx). We'll be using the first half of 2012 (`Autoseg2012B`) to start, since that's the first time period where CSVs (as opposed to MS Access files) are available. The convention we'll use in this repo is that we'll put the uncompressed directory in `external_data/`, so your directory structure might look something like
+We're using the publicly available data from the [Superintendência de Seguros Privados of Brazil](http://www2.susep.gov.br/menuestatistica/Autoseg/principal.aspx). The data can be downloaded using the `analysis/data-fetch.R` script. We'll be using the first half of 2012 (`Autoseg2012B`) to start, since that's the first time period where CSVs (as opposed to MS Access files) are available. The convention we'll use in this repo is that we'll put the uncompressed directory in `external_data/`, so your directory structure might look something like
 
 ```
 ├── R
