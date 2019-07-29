@@ -11,6 +11,7 @@ rec <- recipe(risks_table_mapped, ~ .) %>%
   step_other(make, threshold = 0.01) %>%
   step_string2factor(region, sex, age_range, vehicle_category) %>%
   step_mutate(
+    average_insured_amount = average_insured_amount / 1000,
     region = fct_explicit_na(region),
     make = fct_explicit_na(make),
     exposure = exposure + 0.5 # see #81
@@ -19,14 +20,15 @@ rec <- recipe(risks_table_mapped, ~ .) %>%
 
 modeling_data <- bake(rec, risks_table_mapped) %>%
   mutate_at(c("region", "make", "vehicle_category"), fct_explicit_na) %>%
-  group_by(region, sex, age_range, vehicle_age, make, vehicle_category) %>% 
+  group_by(region, sex, age_range, vehicle_age, average_insured_amount, make, vehicle_category) %>% 
   # Add up exposures, claim counts, and claim amounts
   summarize_at(vars(starts_with("claim_count"), starts_with("claim_amount"), "exposure"), sum) %>%
   ungroup() %>%
   # Aggregate all perils
   gather("variable", "value", starts_with("claim_count"), starts_with("claim_amount")) %>% 
   extract(variable, c("variable"), "(claim_count|claim_amount)") %>%
-  group_by(region, sex, age_range, vehicle_age, make, vehicle_category, variable, exposure) %>%
+  group_by(region, sex, age_range, vehicle_age, average_insured_amount, make, vehicle_category, variable, exposure) %>%
   summarize(value = sum(value)) %>%
+  ungroup() %>% 
   spread(variable, value)
 
