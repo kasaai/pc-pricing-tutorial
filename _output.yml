@@ -1,0 +1,7 @@
+bookdown::gitbook:
+  css: style.css
+  config:
+    toc:
+      before: |
+        <li><a href="./">Practical Ratemaking</a></li>
+    edit: https://github.com/kasaai/pc-pricing-tutorial/edit/master/%s

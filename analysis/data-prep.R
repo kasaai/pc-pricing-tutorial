@@ -1,4 +1,4 @@
-library(pricingtutorial)
+source("analysis/utils.R")
 library(tidyverse)
 
 # Read the main policy table,

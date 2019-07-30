@@ -1,0 +1,16 @@
+output_dir: "_book"
+book_filename: "practical-ratemaking"
+language:
+  ui:
+    chapter_name: "Chapter "
+delete_merged_file: true
+rmd_files: [
+  "index.Rmd",
+  "introduction.Rmd",
+  "data-preparation-and-analysis.Rmd",
+  "modeling.Rmd",
+  "rate-filing.Rmd",
+  "implementation-and-deployment.Rmd",
+  "machine-learning-applications.Rmd",
+  "references.Rmd"
+]
