@@ -21,7 +21,7 @@ read_autoseg <- function(file, ...) {
 #'
 #' @export
 download_data <- function(periods, dest_dir, keep_zip = FALSE) {
-
+  
   if(!fs::dir_exists(dest_dir)) {
     
     fs::dir_create(dest_dir)
@@ -59,14 +59,14 @@ download_file <- function(x, dest_dir, keep_zip = FALSE) {
     data_dir <- stringr::str_extract(dest_file, pattern = ".*?(?=\\.zip$)")
     message(glue("{data_dir} data already downloaded"))
     return(NULL)
-  
+    
   }
   
   download.file(x, destfile = full_path)
   unzip(full_path, exdir = exdir_path)
   
   if (!keep_zip) {
-  
+    
     fs::file_delete(full_path)
     
   }

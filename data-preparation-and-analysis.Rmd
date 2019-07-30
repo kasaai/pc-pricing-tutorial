@@ -1,0 +1,161 @@
+# Data Preparation and Analysis
+
+**WIP!! In process of transferring from old article**
+
+The `.gpkg` files for drawing state boundaries can be downloaded from [https://biogeo.ucdavis.edu/data/gadm3.6/gpkg/gadm36_BRA_gpkg.zip](https://biogeo.ucdavis.edu/data/gadm3.6/gpkg/gadm36_BRA_gpkg.zip). See [https://gadm.org/download_country_v3.html](https://gadm.org/download_country_v3.html) for details.
+
+In this tutorial, we use the publicly available data from Brazil's Superintendence of Private Insurance (SUSEP). It maintains policy-characteristics-level data for personal auto from 2007 to 2014 for all insured vehicles in Brazil. This data source was chosen because it contains a variety of variables, from policyholder characteristics to losses by peril, to support a nontrivial analysis, and contains a variety of mapping tables so we can demonstrate a broader range of data manipulation work found in a typical pricing assignment. You can access the data from SUSEP's [AUTOSEG](http://www2.susep.gov.br/menuestatistica/Autoseg/principal.aspx) website.
+
+## Data Dictionary
+
+### Main Tables
+
+| File      | Description                                                          |
+|-----------|----------------------------------------------------------------------|
+| arq_casco | Exposure data, premiums, claims and insured amount for the CASCO overhead, classified by the Key Category Rate / Region / Model / Year / Sex / Age Range |
+| arq_casco3| Exposure data, premiums and claims for the CASCO overhang, classified by the Key Rate Category / CEP / Model / Year key |
+|arq_casco4 | Exposure data, premiums and claims for the CASCO overhang, classified by the Key Rate Category / City / Model / Year |
+| premreg   | Regional distribution of prices |
+| sinreg    | Regional distribution of claims |
+
+### Auxilliary Tables
+
+| File        | Description                                                          |
+|-------------|----------------------------------------------------------------------|
+| auto2_vei   | FIPE code and description of each vehicle model, in addition to the group code to which it belongs |
+| auto2_group | Code and description of model groups it contains                     |
+| auto_cat    | Description code of tariff categories                                |
+| auto_cau    | Code and description of causes of accidents                          |
+| auto_cep    | Correlates the CEP with cities and regions of circulation            |
+| auto_cob    | Code and description of covers                                       |
+| auto_idade  | Code and description of age groups                                   |
+| auto_reg    | Code and description of regions of circulation                       |
+| auto_sexo   | Code and description of sex (male, female, legal)                    |
+| auto_city   | Code and name of cities                                              |
+
+(maybe we inline this or throw in appendix)
+
+The excerpts for each of the source tables, before any transformations, can be found at [Raw Table Excerpts](https://github.com/kasaai/pc-pricing-tutorial/blob/master/analysis/raw-table-excerpts.md).
+
+We note that, for the purpose of this exercise, we'll use the `arq_casco` policy table since it is the only one that contains poilcyholder characteristics (sex and age.) We are unable to utilize `arq_casco3` and `arq_casco4`, which contain more granular location information, since there are no keys to join by; presumably the data is presented this way to preserve privacy.
+
+## Data prep
+
+Because the source data is in Portuguese, the first order of business is to obtain translations of the column names so we can all understand them. **TODO: dictionary** (this probably goes in appendix)
+
+Once that's done, we'll take an initial look at the tables:
+
+```{r include = FALSE}
+# source("analysis/data-prep.R")
+```
+
+```{r include = FALSE}
+# print_summary <- function(df) {
+#   df %>%
+#     skimr::skim() %>%
+#     skimr::kable()
+#   cat("\n")
+#   head(df, 5) %>%
+#     rmarkdown::paged_table()
+# }
+```
+
+## Table Summaries
+
+### arq_casco
+
+```{r echo = FALSE, results='asis'}
+# print_summary(risks_table)
+```
+
+### auto_cat
+
+```{r echo = FALSE, results='asis'}
+# print_summary(auto_cat)
+```
+
+### auto_reg
+
+```{r echo = FALSE, results='asis'}
+# print_summary(auto_reg)
+```
+
+### auto2_vei
+
+```{r echo = FALSE, results='asis'}
+# print_summary(auto2_vei)
+```
+
+### auto_idade
+
+```{r echo = FALSE, results='asis'}
+# print_summary(auto_idade)
+```
+
+### auto_cau
+
+```{r echo = FALSE, results='asis'}
+# print_summary(auto_cau)
+```
+
+### auto2_grupo
+
+```{r echo = FALSE, results='asis'}
+# print_summary(auto2_grupo)
+```
+
+
+For the policy table, with the exception of the numeric columns, all of the columns contain coded values which need to be mapped. By referencing the data documentation, we observe the data model diagram below **TODO: actually do this**.
+
+**(need more details here [issues/44](https://github.com/kasaai/pc-pricing-tutorial/issues/44))**
+
+We then perform a series of joins and extract the relevant columns to create a combined data frame, then inspect the result for reasonableness:
+
+(Combined Table Summary)
+
+```{r echo = FALSE, results='asis'}
+# print_summary(risks_table_mapped)
+```
+
+# EDA
+
+Distributions
+"One-way" analysis
+
+```{r include = FALSE}
+# source("analysis/map.R")
+```
+
+## Exposures by state
+
+(something like this, will need to add tooltip and cut out Brazil)
+
+```{r, fig.height = 6}
+# brazil %>%
+#   leaflet(options = leafletOptions(minZoom = 4)) %>%
+#   addTiles() %>%
+#   addPolygons(
+#     data = bra_cutout,
+#     weight  = 0,
+#     opacity = 1,
+#     color = "white",
+#     fillOpacity = 1
+#   ) %>%
+#   addPolygons(
+#     fillColor = ~pal(exposures),
+#     weight = 2,
+#     opacity = 1,
+#     color = "white",
+#     dashArray = "3",
+#     fillOpacity = 0.7,
+#     label = lapply(labels, htmltools::HTML),
+#     highlight = highlightOptions(
+#       weight = 5,
+#       color = "#666",
+#       dashArray = "",
+#       fillOpacity = 0.7,
+#       bringToFront = TRUE)
+#   ) %>%
+#   setMaxBounds(bra_bbox[1], bra_bbox[2], bra_bbox[3], bra_bbox[4]) %>%
+#   setView(mean(bra_bbox[c(1,3)]), mean(bra_bbox[c(2,4)]), zoom = 4)
+```
