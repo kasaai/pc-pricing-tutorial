@@ -11,6 +11,5 @@ rmd_files: [
   "modeling.Rmd",
   "rate-filing.Rmd",
   "implementation-and-deployment.Rmd",
-  "machine-learning-applications.Rmd",
   "references.Rmd"
 ]

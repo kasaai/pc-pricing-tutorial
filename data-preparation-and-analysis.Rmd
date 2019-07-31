@@ -1,14 +1,16 @@
 # Data Preparation and Analysis
 
-**WIP!! In process of transferring from old article**
+Perhaps the most difficult aspect of the predictive modeling workflow to write about is data preparation. When it comes to predictive modeling on structured data, the techniques and their implementations are more or less standard across industries. On the other hand, there is tremendous variability in what data sources look like at insurers and therefore in the paths to arrive at modeling-ready datasets from raw data (not to mention navigating politics to acquire said data!). However, we are talking about insurance after all, so the concept of policies, exposures, and claims are relativel invariant across companies.
 
-The `.gpkg` files for drawing state boundaries can be downloaded from [https://biogeo.ucdavis.edu/data/gadm3.6/gpkg/gadm36_BRA_gpkg.zip](https://biogeo.ucdavis.edu/data/gadm3.6/gpkg/gadm36_BRA_gpkg.zip). See [https://gadm.org/download_country_v3.html](https://gadm.org/download_country_v3.html) for details.
+In this chapter, we introduce the datasets we'll be using throughout the book, walk through data preparation, and perform exploratory data analysis.
 
-In this tutorial, we use the publicly available data from Brazil's Superintendence of Private Insurance (SUSEP). It maintains policy-characteristics-level data for personal auto from 2007 to 2014 for all insured vehicles in Brazil. This data source was chosen because it contains a variety of variables, from policyholder characteristics to losses by peril, to support a nontrivial analysis, and contains a variety of mapping tables so we can demonstrate a broader range of data manipulation work found in a typical pricing assignment. You can access the data from SUSEP's [AUTOSEG](http://www2.susep.gov.br/menuestatistica/Autoseg/principal.aspx) website.
+## The AUTOSEG Dataset
 
-## Data Dictionary
+We use publicly available data from AUTOSEG ("Automobile Statistics System") from Brazil's Superintendence of Private Insurance (SUSEP). It maintains policy-characteristics-level data for personal auto from 2007 through the present for all insured vehicles in Brazil. The data contains a variety of variables, from policyholder characteristics to losses by peril. It also contains a set of mapping tables that define the codes used in categorical variables, which allows us to demonstrate a range data manipulation actions such as joining. The data can be downloaded directly from SUSEP's [AUTOSEG](http://www2.susep.gov.br/menuestatistica/Autoseg/principal.aspx) website, but we also host it on the book's [GitHub repository](https://github.com/kasaai/pc-pricing-tutorial) for covenience.
 
-### Main Tables
+The raw data is organized in Zip archives containing half a year worth of data each. Tables \@ref(tab:main-tables) and \@ref(tab:aux-tables) list the data files and their descriptions included in each bundle.
+
+Table: (\#tab:main-tables) Main Tables
 
 | File      | Description                                                          |
 |-----------|----------------------------------------------------------------------|
@@ -18,7 +20,7 @@ In this tutorial, we use the publicly available data from Brazil's Superintenden
 | premreg   | Regional distribution of prices |
 | sinreg    | Regional distribution of claims |
 
-### Auxilliary Tables
+Table: (\#tab:aux-tables) Mapping (Auxiliary) Tables
 
 | File        | Description                                                          |
 |-------------|----------------------------------------------------------------------|
@@ -33,7 +35,6 @@ In this tutorial, we use the publicly available data from Brazil's Superintenden
 | auto_sexo   | Code and description of sex (male, female, legal)                    |
 | auto_city   | Code and name of cities                                              |
 
-(maybe we inline this or throw in appendix)
 
 The excerpts for each of the source tables, before any transformations, can be found at [Raw Table Excerpts](https://github.com/kasaai/pc-pricing-tutorial/blob/master/analysis/raw-table-excerpts.md).
 
@@ -117,7 +118,7 @@ We then perform a series of joins and extract the relevant columns to create a c
 # print_summary(risks_table_mapped)
 ```
 
-# EDA
+## EDA
 
 Distributions
 "One-way" analysis
@@ -159,3 +160,4 @@ Distributions
 #   setMaxBounds(bra_bbox[1], bra_bbox[2], bra_bbox[3], bra_bbox[4]) %>%
 #   setView(mean(bra_bbox[c(1,3)]), mean(bra_bbox[c(2,4)]), zoom = 4)
 ```
+<!-- The `.gpkg` files for drawing state boundaries can be downloaded from [https://biogeo.ucdavis.edu/data/gadm3.6/gpkg/gadm36_BRA_gpkg.zip](https://biogeo.ucdavis.edu/data/gadm3.6/gpkg/gadm36_BRA_gpkg.zip). See [https://gadm.org/download_country_v3.html](https://gadm.org/download_country_v3.html) for details. -->
