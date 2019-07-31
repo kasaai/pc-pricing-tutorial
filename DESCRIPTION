@@ -10,7 +10,7 @@ Authors@R:
            comment = c(ORCID = "0000-0001-7803-7901"))
 Maintainer: Kevin Kuo <kevinykuo@gmail.com>
 Description: Companion package for P&C Pricing Tutorial.
-License: CC BY-SA 4.0 | file LICENSE
+License: CC BY-NC-ND 4.0 | file LICENSE
 Depends:
     R (>= 3.2)
 Imports: 
