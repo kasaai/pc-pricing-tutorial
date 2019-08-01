@@ -1,1 +1,5 @@
 # Introduction {#intro}
+
+Pricing insurance contracts is a bit different from pricing traditional widgets in that the total cost of providing insurance is not known until after the contracts are sold. As an example, when you get a quote for auto insurance online, the insurance company does not know for sure that you will or will not get into an accident in the next six months. However, based on the information you provide in the form, the insurance company can come up with a decent guess of how much they would need to charge in order for them to stay afloat. Most of the premium goes goes towards potential losses the company would have to cover in case you or other policyholders get into an accident, also known as the *lost cost*. Estimating this quantity is what pricing actuaries are most interested in, and the focus of this book.
+
+(insert brief history of development of pricing methods... univariate stuff to GLM)
