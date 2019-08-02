@@ -8,8 +8,12 @@ This appendix contains excerpts of the raw data tables discussed in section \@re
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-library(tidyverse)
 library(fs)
+library(stringr)
+library(magrittr)
+library(glue)
+library(here)
+library(gt)
 source("analysis/utils.R")
 
 data_dir <- fs::path(here::here(), "external_data", "Autoseg2012B")
