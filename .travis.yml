@@ -5,12 +5,14 @@ cache:
   directories:
   - _bookdown_files
   - $HOME/.npm
+  - external_data
 
 before_install:
 - nvm install stable
 - npm install netlify-cli -g
 
 script:
+- Rscript analysis/data_fetch.R
 - Rscript -e "bookdown::render_book('index.Rmd', 'bookdown::gitbook', quiet = TRUE)"
 
 deploy:
