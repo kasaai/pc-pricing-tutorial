@@ -11,5 +11,6 @@ rmd_files: [
   "modeling.Rmd",
   "rate-filing.Rmd",
   "implementation-and-deployment.Rmd",
+  "appendix.Rmd",
   "references.Rmd"
 ]

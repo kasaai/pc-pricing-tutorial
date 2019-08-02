@@ -1,16 +1,22 @@
----
-title: "Raw Table Excerpts"
-output: github_document
-date: "`r Sys.Date()`"
----
+\cleardoublepage 
+
+# (APPENDIX) Appendix {-}
+
+# Raw Table Excerpts {#raw-table-excerpts}
+
+This appendix contains excerpts of the raw data tables discussed in section \@ref(autoseg)
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-library(tidyverse)
-library(pricingtutorial)
 library(fs)
+library(stringr)
+library(magrittr)
+library(glue)
+library(here)
+library(gt)
+source("analysis/utils.R")
 
-data_dir <- path(here::here(), "external_data", "Autoseg2012B")
+data_dir <- fs::path(here::here(), "external_data", "Autoseg2012B")
 
 read_excerpt <- function(tbl, data_dir, n_max = 10) {
   get_num_cols <- function(file) {
@@ -23,55 +29,55 @@ read_excerpt <- function(tbl, data_dir, n_max = 10) {
     n_max = n_max, col_types = paste0(rep("c", ncol_casco_comp), collapse = "")
   )
 }
+
+print_table <- function(tbl, tbl_name = NULL) {
+  tbl_name <- if (is.null(tbl_name)) 
+    as.character(substitute(tbl))
+  else tbl_name
+  
+  tbl %>% 
+    gt::gt() %>% 
+    gt::tab_header(gt::md(glue::glue("**{tbl_name}**")))
+}
 ```
 
-## Main tables
+## Main Tables
 
 Excerpts of the main tables are provided below.
 
-### arq_casco_comp
-
-```{r, echo = FALSE}
+```{r arq_casco_comp, echo = FALSE, fig.cap=""}
 arq_casco_comp <- read_excerpt(
   tbl = "arq_casco_comp", data_dir = data_dir
 )
-knitr::kable(arq_casco_comp)
+print_table(arq_casco_comp)
 ```
-
-### arq_casco3_comp
 
 ```{r, echo = FALSE}
 arq_casco3_comp <- read_excerpt(
   tbl = "arq_casco3_comp", data_dir = data_dir
 )
-knitr::kable(arq_casco3_comp)
+print_table(arq_casco3_comp)
 ```
-
-### arq_casco_comp4
 
 ```{r, echo = FALSE}
 arq_casco4_comp <- read_excerpt(
   tbl = "arq_casco4_comp", data_dir = data_dir
 )
-knitr::kable(arq_casco4_comp)
+print_table(arq_casco4_comp)
 ```
 
-### PremReg
-
 ```{r, echo = FALSE}
-prem_reg <- read_excerpt(
+premreg <- read_excerpt(
   tbl = "PremReg", data_dir = data_dir
 )
-knitr::kable(prem_reg)
+print_table(premreg)
 ```
 
-### SinReg
-
 ```{r, echo = FALSE}
-sin_reg <- read_excerpt(
+sinreg <- read_excerpt(
   tbl = "SinReg", data_dir = data_dir
 )
-knitr::kable(sin_reg)
+print_table(sinreg)
 ```
 
 ## Auxiliary tables
@@ -91,74 +97,54 @@ auto2_grupo <- read_autoseg(path(data_dir,"auto2_grupo.csv"))
 auto2_vei <- read_autoseg(path(data_dir,"auto2_vei.csv"))
 ```
 
-### auto_cat
-
 ```{r, echo = FALSE}
-knitr::kable(auto_cat)
+print_table(auto_cat)
 ```
 
-### auto_cau
-
 ```{r, echo = FALSE}
-knitr::kable(auto_cau)
+print_table(auto_cau)
 ```
-
-### auto_cep
 
 ```{r, echo = FALSE}
 auto_cep %>%
   head(10) %>%
-  knitr::kable()
+  print_table("auto_cep")
 ```
-
-### auto_cidade
 
 ```{r, echo = FALSE}
 auto_cidade %>%
   head(10) %>%
-  knitr::kable()
+  print_table("auto_cidade")
 ```
-
-### auto_cob
 
 ```{r, echo = FALSE}
-knitr::kable(auto_cob)
+print_table(auto_cob)
 ```
-
-### auto_idade
 
 ```{r, echo = FALSE}
 auto_idade %>%
   head(10) %>%
-  knitr::kable()
+  print_table("auto_idade")
 ```
-
-### auto_reg
 
 ```{r, echo = FALSE}
 auto_reg %>%
   head(10) %>%
-  knitr::kable()
+  print_table("auto_reg")
 ```
-
-### auto_sexo
 
 ```{r, echo = FALSE}
-knitr::kable(auto_sexo)
+print_table(auto_sexo)
 ```
-
-### auto2_grupo
 
 ```{r, echo = FALSE}
 auto2_grupo %>%
   head(10) %>%
-  knitr::kable()
+  print_table("auto2_grupo")
 ```
-
-### auto2_vei
 
 ```{r, echo = FALSE}
 auto2_vei %>%
   head(10) %>%
-  knitr::kable()
+  print_table("auto2_vei")
 ```
