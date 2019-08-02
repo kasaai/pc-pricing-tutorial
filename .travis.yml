@@ -12,7 +12,7 @@ before_install:
 - npm install netlify-cli -g
 
 script:
-- Rscript analysis/data_fetch.R
+- Rscript analysis/data-fetch.R
 - Rscript -e "bookdown::render_book('index.Rmd', 'bookdown::gitbook', quiet = TRUE)"
 
 deploy:
