@@ -4,7 +4,7 @@ Perhaps the most difficult aspect of the predictive modeling workflow to write a
 
 In this chapter, we introduce the datasets we'll be using throughout the book, walk through data preparation, and perform exploratory data analysis.
 
-## The AUTOSEG Dataset
+## The AUTOSEG Dataset {#autoseg}
 
 We use publicly available data from AUTOSEG ("Automobile Statistics System") from Brazil's Superintendence of Private Insurance (SUSEP). It maintains policy-characteristics-level data for personal auto from 2007 through the present for all insured vehicles in Brazil. The data contains a variety of variables, from policyholder characteristics to losses by peril. It also contains a set of mapping tables that define the codes used in categorical variables, which allows us to demonstrate a range data manipulation actions such as joining. The data can be downloaded directly from SUSEP's [AUTOSEG](http://www2.susep.gov.br/menuestatistica/Autoseg/principal.aspx) website, but we also host it on the book's [GitHub repository](https://github.com/kasaai/pc-pricing-tutorial) for covenience.
 
@@ -36,7 +36,7 @@ Table: (\#tab:aux-tables) Mapping (Auxiliary) Tables
 | auto_city   | Code and name of cities                                              |
 
 
-The excerpts for each of the source tables, before any transformations, can be found at [Raw Table Excerpts](https://github.com/kasaai/pc-pricing-tutorial/blob/master/analysis/raw-table-excerpts.md).
+The excerpts for each of the source tables, before any transformations, can be found in Appendix \@ref(raw-table-excerpts).
 
 We note that, for the purpose of this exercise, we'll use the `arq_casco` policy table since it is the only one that contains poilcyholder characteristics (sex and age.) We are unable to utilize `arq_casco3` and `arq_casco4`, which contain more granular location information, since there are no keys to join by; presumably the data is presented this way to preserve privacy.
 
