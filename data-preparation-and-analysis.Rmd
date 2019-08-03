@@ -1,3 +1,7 @@
+```{r include = FALSE, cache = TRUE}
+source("analysis/data-prep.R")
+```
+
 # Data Preparation and Analysis
 
 Perhaps the most difficult aspect of the predictive modeling workflow to write about is data preparation. When it comes to predictive modeling on structured data, the techniques and their implementations are more or less standard across industries. On the other hand, there is tremendous variability in what data sources look like at insurers and therefore in the paths to arrive at modeling-ready datasets from raw data (not to mention navigating politics to acquire said data!). However, we are talking about insurance after all, so the concept of policies, exposures, and claims are relativel invariant across companies.
@@ -36,19 +40,47 @@ Table: (\#tab:aux-tables) Mapping (Auxiliary) Tables
 | auto_city   | Code and name of cities                                              |
 
 
-The excerpts for each of the source tables, before any transformations, can be found in Appendix \@ref(raw-table-excerpts).
+The excerpts for each of the source tables, before any transformations, can be found in Appendix \@ref(raw-table-excerpts). (TODO: maybe we should include translations here.)
 
-We note that, for the purpose of this exercise, we'll use the `arq_casco` policy table since it is the only one that contains poilcyholder characteristics (sex and age.) We are unable to utilize `arq_casco3` and `arq_casco4`, which contain more granular location information, since there are no keys to join by; presumably the data is presented this way to preserve privacy.
+For our purposes, we will use the `arq_casco` policy table since it is the only one that contains poilcyholder characteristics -- specifically, sex and age.
 
-## Data prep
+## The Data Model
 
-Because the source data is in Portuguese, the first order of business is to obtain translations of the column names so we can all understand them. **TODO: dictionary** (this probably goes in appendix)
+We see that there are a few categorical columns in `arq_casco` with codes that we need to decipher using the provided mapping tables. To accomplish this, we first observe the following relational model diagram:
+
+```{r, echo = FALSE, fig.cap="Relational model of AUTOSEG tables."}
+library(datamodelr)
+
+dm <- dm_from_data_frames(
+  risks_table, auto_cat,
+  auto_cau, auto_idade, auto_reg,
+  auto_sexo, auto2_vei)
+
+dm <- dm_add_references(
+  dm,
+  risks_table$vehicle_category_code == auto_cat$vehicle_category_code,
+  risks_table$sex_code == auto_sexo$sex_code,
+  risks_table$region_code == auto_reg$region_code,
+  risks_table$age_code == auto_idade$age_code,
+  risks_table$vehicle_code == auto2_vei$vehicle_code
+)
+graph <- dm_create_graph(dm)
+datamodelr::dm_render_graph(graph)
+```
+
+The table `auto_cau` stands out from the others because it defines the numerical codes used in the claim count and claim amount columns, so we use it to rename those columns in `risks_table` rather than joining them. For example, the column `claim_count1` becomes `claim_count_theft`.
+
+For the rest of the mapping tables, we join them on to the main `risks_table` by the associated keys. As an example, for the table `auto_idade`, which we exhibit in Table \@ref(tab:auto-idade), we join on the column `age_code`. The type of join we perform is a *left join*, which means we retain all rows of `risks_table`, and append the matched rows in `auto_idade`, so that the row with `age_code == "0"` will have `age == "Not provided"`, the row with `age_code == "1"` will have `age == "18 to 25"`, and so on.
+
+```{r auto-idade, echo = FALSE}
+knitr::kable(auto_idade, booktabs = TRUE, caption = "auto_idade.")
+```
+
+## EDA
 
 Once that's done, we'll take an initial look at the tables:
 
-```{r include = FALSE}
-# source("analysis/data-prep.R")
-```
+
 
 ```{r include = FALSE}
 # print_summary <- function(df) {
@@ -104,6 +136,12 @@ Once that's done, we'll take an initial look at the tables:
 ```{r echo = FALSE, results='asis'}
 # print_summary(auto2_grupo)
 ```
+
+## Training/Testing Split
+
+Now that we have acquired the data we will use for modeling, the immediate next step is to set aside a holdout, or testing, set. The purpose of the testing set is to serve as a way for us to validate our model at the end of the modeling exercise. It is crucial that we do not peek at the testing set during exploratory data analysis or model tuning, otherwise we may allow information from the testing set to "leak" to the training phase, which undermines the credibility of our performance metrics.
+
+We are going to set aside a random 1/5 of the available data as our testing set, and lock it up in a drawer (figuratively) and not look at it until the very end. (TODO: maybe consider time split when we expand to more years.)
 
 
 For the policy table, with the exception of the numeric columns, all of the columns contain coded values which need to be mapped. By referencing the data documentation, we observe the data model diagram below **TODO: actually do this**.

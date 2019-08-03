@@ -117,7 +117,9 @@ risks_table <- risks_table %>%
           paste(value_type, peril, sep = "_")
         })
     }
-  ) 
+  ) %>% 
+  # Remove unused columns
+  select(-EXPOSICAO2, -PREMIO2)
 
 
 # Joins
@@ -129,10 +131,5 @@ risks_table_mapped <- risks_table %>%
   left_join(auto_sexo, by = "sex_code") %>%
   left_join(auto_idade, by = "age_code") %>%
   left_join(auto2_grupo, by = "vehicle_group_code") %>%
-  select(
-    # stuff we mapped
-    -ends_with("_code"),
-    # stuff we don't need
-    -EXPOSICAO2, -PREMIO2
-  ) %>%
+  select(-ends_with("_code")) %>%
   mutate_if(is.character, trimws)
