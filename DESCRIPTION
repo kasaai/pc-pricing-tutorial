@@ -32,4 +32,5 @@ LazyData: true
 RoxygenNote: 6.1.0
 Remotes: 
     rstudio/gt,
-    ropensci/piggyback
+    ropensci/piggyback,
+    bergant/datamodelr
