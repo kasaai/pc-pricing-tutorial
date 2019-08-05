@@ -133,3 +133,23 @@ risks_table_mapped <- risks_table %>%
   left_join(auto2_grupo, by = "vehicle_group_code") %>%
   select(-ends_with("_code")) %>%
   mutate_if(is.character, trimws)
+
+modeling_data <- risks_table_mapped %>% 
+  filter(
+    # See https://github.com/kasaai/pc-pricing-tutorial/issues/88
+    vehicle_category %in% c(
+      "Passeio importado",
+      "Passeio nacional",
+      "Pick-up (nacional e importado)"
+    ),
+    # This filters out "Jurídica" which means "enterprise/legal"
+    sex %in% c("Feminino", "Masculino"),
+    # See https://github.com/kasaai/pc-pricing-tutorial/issues/89
+    average_insured_amount > 0
+  ) %>% 
+  # Response variables, aggregate all perils
+  mutate(
+    claim_count = rowSums(select(., starts_with("claim_count_"))),
+    claim_amount = rowSums(select(., starts_with("claim_amount_")))
+  ) %>% 
+  select(-starts_with("claim_count_"), -starts_with("claim_amount_"))

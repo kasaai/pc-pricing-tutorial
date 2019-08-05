@@ -1,13 +1,37 @@
 freq_sev_glm <- function(split) {
-  train_set <- analysis(split)
-  validation_set <- assessment(split)
   
-  m1_frequency <- glm(
+  train_set <- analysis(split)
+  report_year <- 2012
+  
+  rec <- recipe(train_set, ~.) %>%
+    step_mutate(
+      make = sub(" .*$", "", vehicle_group),
+      # TODO try to understand `vehicle_year` of 0 and > 2012
+      vehicle_age = pmin(pmax(!!report_year - vehicle_year, 0), 35)
+    ) %>%
+    step_other(make, threshold = 0.01) %>%
+    step_string2factor(region, sex, age_range, vehicle_category) %>%
+    step_mutate(
+      average_insured_amount = average_insured_amount / 1000,
+      region = fct_explicit_na(region),
+      make = fct_explicit_na(make),
+      vehicle_category = fct_explicit_na(vehicle_category),
+      log1p_vehicle_age = log1p(vehicle_age),
+      log_average_insured_amount = log(average_insured_amount),
+      exposure = exposure + 0.5 # see #81
+    ) %>%
+    prep(train_set, strings_as_factors = FALSE, retain = TRUE)
+  
+  train_set <- juice(rec)
+  validation_set <- bake(rec, assessment(split))
+  
+  m1_frequency <- glm2::glm2(
     claim_count ~ region + sex + age_range + 
       log_average_insured_amount + log1p_vehicle_age + make + 
       offset(log(exposure)),
     data = train_set,
-    family = "poisson"
+    family = "poisson",
+    control = list(trace = TRUE, maxit = 50)
   )
   
   train_set_severity <- train_set %>%
@@ -20,11 +44,12 @@ freq_sev_glm <- function(split) {
       log_average_insured_amount + log1p_vehicle_age + make,
     data = train_set_severity,
     weights = train_set_severity$claim_count,
-    family = Gamma(link = "log")
+    family = Gamma(link = "log"),
+    control = list(trace = TRUE, maxit = 50)
   )
   
-  relativities_frequency <- tidy(m1_frequency, exponentiate = TRUE)
-  relativities_severity <- tidy(m1_severity, exponentiate = TRUE)
+  relativities_frequency <- broom::tidy(m1_frequency, exponentiate = TRUE)
+  relativities_severity <- broom::tidy(m1_severity, exponentiate = TRUE)
   
   # Check to see factor levels matching for two models
   select(relativities_frequency, term) %>%
