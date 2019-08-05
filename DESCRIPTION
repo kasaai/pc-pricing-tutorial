@@ -26,7 +26,8 @@ Imports:
     here,
     magrittr,
     piggyback,
-    datamodelr
+    datamodelr,
+    DiagrammeR
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.0
