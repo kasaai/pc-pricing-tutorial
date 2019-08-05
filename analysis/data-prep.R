@@ -1,5 +1,5 @@
 source("analysis/utils.R")
-library(tidyverse)
+library(dplyr)
 
 # Read the main policy table,
 #  specifying column types explicitly.
