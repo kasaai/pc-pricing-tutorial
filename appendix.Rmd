@@ -38,6 +38,12 @@ print_table <- function(tbl, tbl_name = NULL) {
     gt::tab_header(gt::md(glue::glue("**{tbl_name}**")))
 }
 
+print_summary <- function(tbl) {
+  tbl %>%
+    skimr::skim() %>%
+    skimr::kable()
+}
+
 arq_casco_comp <- read_excerpt(
   tbl = "arq_casco_comp", data_dir = data_dir
 )

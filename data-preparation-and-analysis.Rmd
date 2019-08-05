@@ -76,94 +76,11 @@ For the rest of the mapping tables, we join them on to the main `risks_table` by
 knitr::kable(auto_idade, booktabs = TRUE, caption = "auto_idade.")
 ```
 
-## EDA
-
-Once that's done, we'll take an initial look at the tables:
-
-
-
-```{r include = FALSE}
-# print_summary <- function(df) {
-#   df %>%
-#     skimr::skim() %>%
-#     skimr::kable()
-#   cat("\n")
-#   head(df, 5) %>%
-#     rmarkdown::paged_table()
-# }
-```
-
-## Table Summaries
-
-### arq_casco
-
-```{r echo = FALSE, results='asis'}
-# print_summary(risks_table)
-```
-
-### auto_cat
-
-```{r echo = FALSE, results='asis'}
-# print_summary(auto_cat)
-```
-
-### auto_reg
-
-```{r echo = FALSE, results='asis'}
-# print_summary(auto_reg)
-```
-
-### auto2_vei
-
-```{r echo = FALSE, results='asis'}
-# print_summary(auto2_vei)
-```
-
-### auto_idade
-
-```{r echo = FALSE, results='asis'}
-# print_summary(auto_idade)
-```
-
-### auto_cau
-
-```{r echo = FALSE, results='asis'}
-# print_summary(auto_cau)
-```
-
-### auto2_grupo
-
-```{r echo = FALSE, results='asis'}
-# print_summary(auto2_grupo)
-```
-
 ## Training/Testing Split
 
 Now that we have acquired the data we will use for modeling, the immediate next step is to set aside a holdout, or testing, set. The purpose of the testing set is to serve as a way for us to validate our model at the end of the modeling exercise. It is crucial that we do not peek at the testing set during exploratory data analysis or model tuning, otherwise we may allow information from the testing set to "leak" to the training phase, which undermines the credibility of our performance metrics.
 
 We are going to set aside a random 1/5 of the available data as our testing set, and lock it up in a drawer (figuratively) and not look at it until the very end. (TODO: maybe consider time split when we expand to more years.)
-
-
-For the policy table, with the exception of the numeric columns, all of the columns contain coded values which need to be mapped. By referencing the data documentation, we observe the data model diagram below **TODO: actually do this**.
-
-**(need more details here [issues/44](https://github.com/kasaai/pc-pricing-tutorial/issues/44))**
-
-We then perform a series of joins and extract the relevant columns to create a combined data frame, then inspect the result for reasonableness:
-
-(Combined Table Summary)
-
-```{r echo = FALSE, results='asis'}
-# print_summary(risks_table_mapped)
-```
-
-## EDA
-
-Distributions
-"One-way" analysis
-
-```{r include = FALSE}
-# source("analysis/map.R")
-```
 
 ## Exposures by state
 
