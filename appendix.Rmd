@@ -4,9 +4,7 @@
 
 # Raw Table Excerpts {#raw-table-excerpts}
 
-This appendix contains excerpts of the raw data tables discussed in section \@ref(autoseg)
-
-```{r setup, include=FALSE}
+```{r data-excerpt-setup, include = FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(fs)
 library(stringr)
@@ -39,52 +37,33 @@ print_table <- function(tbl, tbl_name = NULL) {
     gt::gt() %>% 
     gt::tab_header(gt::md(glue::glue("**{tbl_name}**")))
 }
-```
 
-## Main Tables
+print_summary <- function(tbl) {
+  tbl %>%
+    skimr::skim() %>%
+    skimr::kable()
+}
 
-Excerpts of the main tables are provided below.
-
-```{r arq_casco_comp, echo = FALSE, fig.cap=""}
 arq_casco_comp <- read_excerpt(
   tbl = "arq_casco_comp", data_dir = data_dir
 )
-print_table(arq_casco_comp)
-```
 
-```{r, echo = FALSE}
 arq_casco3_comp <- read_excerpt(
   tbl = "arq_casco3_comp", data_dir = data_dir
 )
-print_table(arq_casco3_comp)
-```
 
-```{r, echo = FALSE}
 arq_casco4_comp <- read_excerpt(
   tbl = "arq_casco4_comp", data_dir = data_dir
 )
-print_table(arq_casco4_comp)
-```
 
-```{r, echo = FALSE}
 premreg <- read_excerpt(
   tbl = "PremReg", data_dir = data_dir
 )
-print_table(premreg)
-```
 
-```{r, echo = FALSE}
 sinreg <- read_excerpt(
   tbl = "SinReg", data_dir = data_dir
 )
-print_table(sinreg)
-```
 
-## Auxiliary tables
-
-Excerpts of auxiliary tables are provided below.
-
-```{r, echo = FALSE, include = FALSE}
 auto_cat <- read_autoseg(path(data_dir, "auto_cat.csv"))
 auto_cau <- read_autoseg(path(data_dir, "auto_cau.csv"))
 auto_cep <- read_autoseg(path(data_dir,"auto_cep.csv"))
@@ -96,6 +75,36 @@ auto_sexo <- read_autoseg(path(data_dir,"auto_sexo.csv"))
 auto2_grupo <- read_autoseg(path(data_dir,"auto2_grupo.csv"))
 auto2_vei <- read_autoseg(path(data_dir,"auto2_vei.csv"))
 ```
+
+This appendix contains excerpts of the raw data tables discussed in section \@ref(autoseg)
+
+## Main Tables
+
+Excerpts of the main tables are provided below.
+
+```{r arq_casco_comp, echo = FALSE, fig.cap=""}
+print_table(arq_casco_comp)
+```
+
+```{r, echo = FALSE}
+print_table(arq_casco3_comp)
+```
+
+```{r, echo = FALSE}
+print_table(arq_casco4_comp)
+```
+
+```{r, echo = FALSE}
+print_table(premreg)
+```
+
+```{r, echo = FALSE}
+print_table(sinreg)
+```
+
+## Auxiliary tables
+
+Excerpts of auxiliary tables are provided below.
 
 ```{r, echo = FALSE}
 print_table(auto_cat)

@@ -5,9 +5,9 @@ bookdown::gitbook:
       before: |
         <li><a href="./">Practical Ratemaking</a></li>
     edit: https://github.com/kasaai/pc-pricing-tutorial/edit/master/%s
-bookdown::pdf_book:
-  includes:
-    in_header: preamble.tex
-  latex_engine: pdflatex 
-  citation_package: natbib
-  keep_tex: yes
+# bookdown::pdf_book:
+#   includes:
+#     in_header: preamble.tex
+#   latex_engine: xelatex
+#   citation_package: natbib
+#   keep_tex: yes
