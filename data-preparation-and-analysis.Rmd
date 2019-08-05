@@ -46,9 +46,9 @@ For our purposes, we will use the `arq_casco` policy table since it is the only 
 
 ## The Data Model
 
-We see that there are a few categorical columns in `arq_casco` with codes that we need to decipher using the provided mapping tables. To accomplish this, we first observe the following relational model diagram:
+We see that there are a few categorical columns in `arq_casco` with codes that we need to decipher using the provided mapping tables. To accomplish this, we first observe the  relational model diagram in Figure \@ref(fig:data-model).
 
-```{r, echo = FALSE, fig.cap="Relational model of AUTOSEG tables."}
+```{r, data-model, echo = FALSE, message=FALSE, fig.cap="Relational model of AUTOSEG tables."}
 library(datamodelr)
 
 dm <- dm_from_data_frames(
