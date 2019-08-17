@@ -1,4 +1,4 @@
-```{r include = FALSE, cache = TRUE}
+```{r cache=FALSE, include=FALSE}
 source("analysis/data-prep.R")
 ```
 
@@ -80,7 +80,32 @@ knitr::kable(auto_idade, booktabs = TRUE, caption = "auto_idade.")
 
 Now that we have acquired the data we will use for modeling, the immediate next step is to set aside a holdout, or testing, set. The purpose of the testing set is to serve as a way for us to validate our model at the end of the modeling exercise. It is crucial that we do not peek at the testing set during exploratory data analysis or model tuning, otherwise we may allow information from the testing set to "leak" to the training phase, which undermines the credibility of our performance metrics.
 
-We are going to set aside a random 1/5 of the available data as our testing set, and lock it up in a drawer (figuratively) and not look at it until the very end. (TODO: maybe consider time split when we expand to more years.)
+We are going to set aside a random 1/5 of the available data as our testing set, and lock it up in a drawer (figuratively) and not look at it until the very end. (TODO: maybe consider time split when we expand to more years.) Until we say otherwise, the following analyses will all be done on the training set.
+
+## Data Summary
+
+Perhaps the first thing to look at is a brief summary of our combined dataset to get an idea about types, missingness, and distributions. In Tables \@ref(tab:data-summary-character) and \@ref(tab:data-summary-numeric) we have the summaries of the character and numeric columns, respectively.
+
+```{r echo = FALSE, message=FALSE}
+library(skimr)
+library(kableExtra)
+library(gt)
+summary_list <- training_data %>% skimr::skim_to_list()
+```
+
+```{r data-summary-character, echo = FALSE}
+summary_list$character %>%
+  gt::gt() %>%
+  # TODO: this is a hack before https://github.com/rstudio/gt/pull/143
+  #   is resolved
+  gt::tab_header(html("Summary of character columns of training dataset. <span id='tab:data-summary-character'></span>"))
+```
+
+```{r data-summary-numeric, echo = FALSE}
+rbind(summary_list$integer, summary_list$numeric) %>% 
+  gt::gt() %>%
+  gt::tab_header(html("Summary of numeric columns of training dataset.<span id='tab:data-summary-numeric'></span>"))
+```
 
 ## Exposures by state
 

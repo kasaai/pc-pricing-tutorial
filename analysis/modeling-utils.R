@@ -3,23 +3,7 @@ freq_sev_glm <- function(split) {
   train_set <- analysis(split)
   report_year <- 2012
   
-  rec <- recipe(train_set, ~.) %>%
-    step_mutate(
-      make = sub(" .*$", "", vehicle_group),
-      # TODO try to understand `vehicle_year` of 0 and > 2012
-      vehicle_age = pmin(pmax(!!report_year - vehicle_year, 0), 35)
-    ) %>%
-    step_other(make, threshold = 0.01) %>%
-    step_string2factor(region, sex, age_range, vehicle_category) %>%
-    step_mutate(
-      average_insured_amount = average_insured_amount / 1000,
-      region = fct_explicit_na(region),
-      make = fct_explicit_na(make),
-      vehicle_category = fct_explicit_na(vehicle_category),
-      log1p_vehicle_age = log1p(vehicle_age),
-      log_average_insured_amount = log(average_insured_amount),
-      exposure = exposure + 0.5 # see #81
-    ) %>%
+  rec <- make_recipe(train_set, report_year) %>%
     prep(train_set, strings_as_factors = FALSE, retain = TRUE)
   
   train_set <- juice(rec)
@@ -73,4 +57,25 @@ freq_sev_glm <- function(split) {
       yardstick::rsq(validation_set_preds, claim_amount, predicted_claim_amount, na_rm = FALSE)
     ))
   )
+}
+
+make_recipe <- function(data, report_year) {
+  recipe(data, ~ .) %>%
+    step_mutate(
+      make = sub(" .*$", "", vehicle_group),
+      # TODO try to understand `vehicle_year` of 0 and > 2012
+      vehicle_age = pmin(pmax(!!report_year - vehicle_year, 0), 35)
+    ) %>%
+    step_other(make, threshold = 0.01) %>%
+    step_string2factor(region, sex, age_range, vehicle_category) %>%
+    step_mutate(
+      average_insured_amount = average_insured_amount / 1000,
+      region = fct_explicit_na(region),
+      make = fct_explicit_na(make),
+      vehicle_category = fct_explicit_na(vehicle_category),
+      log1p_vehicle_age = log1p(vehicle_age),
+      log_average_insured_amount = log(average_insured_amount),
+      exposure = exposure + 0.5, # see #81
+      loss_per_exposure = claim_amount / exposure
+    )
 }
