@@ -3,6 +3,7 @@ library(dplyr)
 library(vroom)
 library(stringr)
 library(purrr)
+library(rsample)
 
 # Read the main policy table,
 #  specifying column types explicitly.
@@ -156,3 +157,7 @@ modeling_data <- risks_table_mapped %>%
     claim_amount = rowSums(select(., starts_with("claim_amount_")))
   ) %>% 
   select(-starts_with("claim_count_"), -starts_with("claim_amount_"))
+
+# Perform initial split into training and testing/holdout
+splits <- initial_split(modeling_data, prop = 4 / 5)
+training_data <- training(splits)

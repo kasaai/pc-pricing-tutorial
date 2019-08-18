@@ -1,11 +1,6 @@
-library(rsample)
 library(recipes)
 library(furrr)
 source("analysis/modeling-utils.R")
-
-# Perform initial split into training and testing/holdout
-splits <- initial_split(modeling_data, prop = 4 / 5)
-training_data <- training(splits)
 
 # k-fold CV on the training data
 #   using 2 for development, should bump up to 10
