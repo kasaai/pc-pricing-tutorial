@@ -97,4 +97,4 @@ new_data <- jsonlite::fromJSON(incoming) %>%
   as.data.frame() %>% 
   bake(recipe_loaded, .) %>% 
   mutate_if(is.factor, as.character)
-keras:::predict.keras.engine.training.Model(toy_model_loaded, new_data)
+predict(toy_model_loaded, new_data)
