@@ -2,6 +2,7 @@ library(tidyverse)
 library(recipes)
 library(tfdatasets)
 library(keras)
+library(forcats)
 source("analysis/data-prep.R")
 report_year <- 2012
 
@@ -29,10 +30,7 @@ predictors <- c("sex", "age_range", "vehicle_age", "make", "vehicle_category",
                 "region", "average_insured_amount")
 # feature columns don't handle factors well currently
 train_set <- juice(rec) %>% 
-  mutate_if(is.factor, as.character) %>% 
-  bind_cols(select(train_set, claim_amount, exposure)) %>% 
-  mutate(exposure = exposure + 0.5, # see #81
-         loss_per_exposure = claim_amount / exposure)
+  mutate_if(is.factor, as.character)
 
 # Construct feature spec
 feat_spec <- train_set %>% 
