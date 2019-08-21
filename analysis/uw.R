@@ -44,6 +44,7 @@ feat_spec <- train_set %>%
   ) %>%
   step_indicator_column(sex, age_range, vehicle_category) %>%
   step_embedding_column(region, make) %>%
+  fit()
 
 toy_model <- keras_model_sequential(list(
   layer_dense_features(feature_columns = feat_spec$dense_features()),
