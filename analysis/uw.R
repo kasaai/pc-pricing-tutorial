@@ -70,13 +70,20 @@ tensorflow::tf$keras$models$save_model(toy_model, filepath = "model_artifacts/to
 #  https://github.com/tidymodels/butcher/issues/132
 saveRDS(rec, "model_artifacts/recipe.rds")
 
-# Prediction
+# Prediction ----
+
+# in new R session
 
 library(tensorflow)
 library(dplyr)
 library(keras)
 library(recipes)
 library(forcats)
+
+if (!dir.exists("model_artifacts")) {
+  piggyback::pb_download("model_artifacts.tar.gz", repo = "kasaai/pc-pricing-tutorial")
+  untar("model_artifacts.tar.gz")
+}
 
 toy_model_loaded <- tensorflow::tf$keras$models$load_model("model_artifacts/toy_model")
 recipe_loaded <- readRDS("model_artifacts/recipe.rds")
