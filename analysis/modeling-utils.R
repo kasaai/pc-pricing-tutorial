@@ -70,12 +70,10 @@ make_recipe <- function(data, report_year) {
     step_string2factor(region, sex, age_range, vehicle_category) %>%
     step_mutate(
       average_insured_amount = average_insured_amount / 1000,
-      region = fct_explicit_na(region),
-      make = fct_explicit_na(make),
-      vehicle_category = fct_explicit_na(vehicle_category),
+      region = forcats::fct_explicit_na(region),
+      make = forcats::fct_explicit_na(make),
+      vehicle_category = forcats::fct_explicit_na(vehicle_category),
       log1p_vehicle_age = log1p(vehicle_age),
-      log_average_insured_amount = log(average_insured_amount),
-      exposure = exposure + 0.5, # see #81
-      loss_per_exposure = claim_amount / exposure
+      log_average_insured_amount = log(average_insured_amount)
     )
 }

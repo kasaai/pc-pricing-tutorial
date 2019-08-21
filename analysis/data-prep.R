@@ -156,7 +156,9 @@ modeling_data <- risks_table_mapped %>%
     claim_count = rowSums(select(., starts_with("claim_count_"))),
     claim_amount = rowSums(select(., starts_with("claim_amount_")))
   ) %>% 
-  select(-starts_with("claim_count_"), -starts_with("claim_amount_"))
+  select(-starts_with("claim_count_"), -starts_with("claim_amount_")) %>% 
+  mutate(exposure = exposure + 0.5, # see #81
+         loss_per_exposure = claim_amount / exposure)
 
 # Perform initial split into training and testing/holdout
 splits <- initial_split(modeling_data, prop = 4 / 5)
