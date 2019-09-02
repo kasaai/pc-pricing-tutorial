@@ -71,3 +71,31 @@ download_file <- function(x, dest_dir, keep_zip = FALSE) {
     
   }
 }
+
+read_excerpt <- function(tbl, data_dir, n_max = 10) {
+  get_num_cols <- function(file) {
+    readLines(file, n = 1) %>% str_split(";") %>% unlist() %>% length()
+  }
+  file_path <- paste0(file.path(data_dir, tbl), ".csv")
+  ncol_casco_comp <- get_num_cols(file_path)
+  read_autoseg(
+    file_path,
+    n_max = n_max, col_types = paste0(rep("c", ncol_casco_comp), collapse = "")
+  )
+}
+
+print_table <- function(tbl, tbl_name = NULL) {
+  tbl_name <- if (is.null(tbl_name)) 
+    as.character(substitute(tbl))
+  else tbl_name
+  
+  tbl %>% 
+    gt::gt() %>% 
+    gt::tab_header(gt::md(glue::glue("**{tbl_name}**")))
+}
+
+print_summary <- function(tbl) {
+  tbl %>%
+    skimr::skim() %>%
+    skimr::kable()
+}
