@@ -4,9 +4,19 @@
 
 # P&C Pricing Tutorial
 
-The goal of this project is to build an end-to-end reproducible example of a ratemaking project in R, in the form of a book. The target audience includes students, actuaries, and data scientists who are interested in learning about insurance pricing or porting their existing workflows.
+The goal of this project is to build an end-to-end reproducible example of a ratemaking project in R, in the form of a book. The target audience includes students, actuaries, and data scientists who are interested in learning about insurance pricing or porting their existing workflows. As much as possible, we'll provide reproducible code for the technical bits, including data manipulation, exploratory data analysis, modeling, validation, implementation, and report writing. Significant simplifications from real life (due to lack of details in the dataset, for example) will be noted. We'll follow modeling best practices, but also point out incorrect/suboptimal workflows that are prevalent.
 
-While we won't be able to emulate all the beauracracy/politics associated with doing data science projects in an insurance company (they'll be [different for everyone](https://en.wikipedia.org/wiki/Anna_Karenina_principle) anyway), we'll comment on how they might affect the analytics workflow. As much as possible, we'll provide reproducible code for the technical bits, including data manipulation, exploratory data analysis, modeling, validation, implementation, and report writing. Significant simplifications from real life (due to lack of details in the dataset, for example) will be noted. We'll follow modeling best practices, but also point out incorrect/suboptimal workflows that are prevalent.
+# Package Dependencies
+
+To install the necessary packages to run the code in this repo, you can restore the library using renv as follows: 
+
+```r
+if (!requireNamespace("remotes"))
+  install.packages("remotes")
+
+remotes::install_github("rstudio/renv")
+renv::restore()
+```
 
 ## Contributing
 

@@ -6,3 +6,5 @@
 ^analysis$
 ^.*\.Rproj$
 ^\.Rproj\.user$
+^renv$
+^renv\.lock$
