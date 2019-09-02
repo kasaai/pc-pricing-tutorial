@@ -5,3 +5,10 @@ external_data
 .RData
 .Ruserdata
 **/.DS_Store
+internal
+.Rprofile
+_book
+_bookdown_files
+model_artifacts
+model_artifacts.tar.gz
+renv
