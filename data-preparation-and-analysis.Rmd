@@ -1,5 +1,11 @@
-```{r cache=FALSE, include=FALSE}
-source("analysis/data-prep.R")
+```{r data-setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+source("analysis/packages.R")
+source("analysis/utils.R")
+loadd(raw_data_excerpts)
+loadd(raw_data)
+loadd(training_data)
 ```
 
 # Data Preparation and Analysis
@@ -50,21 +56,31 @@ We see that there are a few categorical columns in `arq_casco` with codes that w
 
 ```{r, data-model, echo = FALSE, message=FALSE, fig.cap="Relational model of AUTOSEG tables."}
 library(datamodelr)
+library(drake)
+library(zeallot)
+create_data_graph <- function(raw_data) {
+  c(auto_cat, auto_cau, auto_cep, auto_cidade,
+    auto_cob, auto_idade, auto_reg, auto_sexo,
+    auto2_grupo, auto2_vei, risks_table) %<-% raw_data
+  
+  dm <- dm_from_data_frames(
+    risks_table, auto_cat,
+    auto_cau, auto_idade, auto_reg,
+    auto_sexo, auto2_vei)
+  
+  dm <- dm_add_references(
+    dm,
+    risks_table$vehicle_category_code == auto_cat$vehicle_category_code,
+    risks_table$sex_code == auto_sexo$sex_code,
+    risks_table$region_code == auto_reg$region_code,
+    risks_table$age_code == auto_idade$age_code,
+    risks_table$vehicle_code == auto2_vei$vehicle_code
+  )
+  dm_create_graph(dm)
+}
 
-dm <- dm_from_data_frames(
-  risks_table, auto_cat,
-  auto_cau, auto_idade, auto_reg,
-  auto_sexo, auto2_vei)
-
-dm <- dm_add_references(
-  dm,
-  risks_table$vehicle_category_code == auto_cat$vehicle_category_code,
-  risks_table$sex_code == auto_sexo$sex_code,
-  risks_table$region_code == auto_reg$region_code,
-  risks_table$age_code == auto_idade$age_code,
-  risks_table$vehicle_code == auto2_vei$vehicle_code
-)
-graph <- dm_create_graph(dm)
+graph <- raw_data %>% 
+  create_data_graph()
 datamodelr::dm_render_graph(graph)
 ```
 
@@ -73,7 +89,7 @@ The table `auto_cau` stands out from the others because it defines the numerical
 For the rest of the mapping tables, we join them on to the main `risks_table` by the associated keys. As an example, for the table `auto_idade`, which we exhibit in Table \@ref(tab:auto-idade), we join on the column `age_code`. The type of join we perform is a *left join*, which means we retain all rows of `risks_table`, and append the matched rows in `auto_idade`, so that the row with `age_code == "0"` will have `age == "Not provided"`, the row with `age_code == "1"` will have `age == "18 to 25"`, and so on.
 
 ```{r auto-idade, echo = FALSE}
-knitr::kable(auto_idade, booktabs = TRUE, caption = "auto_idade.")
+knitr::kable(raw_data$auto_idade, booktabs = TRUE, caption = "auto_idade.")
 ```
 
 ## Training/Testing Split
