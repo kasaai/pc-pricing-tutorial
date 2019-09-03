@@ -1,6 +1,6 @@
 ### Contributing
 
-**Please drop by the `#pc-pricing-tutorial` channel in Slack ([slack.kasa.ai](https://slack.kasa.ai)) if you have questions about these instructions, and feel free to suggest improvements.**
+**Please drop by the `#pricing-tutorial` channel in Slack ([slack.kasa.ai](https://slack.kasa.ai)) if you have questions about these instructions, and feel free to suggest improvements.**
 
 The book is written using [bookdown](https://bookdown.org/) and the workflow is managed using [drake](https://docs.ropensci.org/drake/). Before attempting to build the book, you want to make sure 1) you have the raw data files, and 2) you have the correct packages installed. The data files can be obtained by running the `analysis/data-fetch.R` script. To install the packages, you can utilize [renv](https://rstudio.github.io/renv/):
 
