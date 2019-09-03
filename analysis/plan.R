@@ -12,6 +12,7 @@ plan <- drake_plan(
     args = list(
       input = drake::knitr_in("index.Rmd"),
       output_format = "bookdown::gitbook",
+      output_dir = drake::file_out("_book"),
       quiet = TRUE
     )
   )
