@@ -1,13 +1,13 @@
 {
   "renv": {
-    "Version": "0.7.0-17"
+    "Version": "0.7.0-21"
   },
   "R": {
     "Version": "3.6.1",
     "Repositories": [
       {
         "Name": "CRAN",
-        "URL": "https://cran.rstudio.com/"
+        "URL": "https://cran.rstudio.com"
       }
     ]
   },
@@ -89,6 +89,12 @@
       "Version": "0.1-3",
       "Source": "CRAN",
       "Hash": "d355963b4b1c3039bfe8d65611a11cca"
+    },
+    "base64url": {
+      "Package": "base64url",
+      "Version": "1.4",
+      "Source": "CRAN",
+      "Hash": "205ca9cc59dc1fff1a7ba55fee9dad57"
     },
     "bookdown": {
       "Package": "bookdown",
@@ -204,6 +210,18 @@
       "Source": "CRAN",
       "Hash": "17783831e1e918ab250dcae5dd9c6e03"
     },
+    "drake": {
+      "Package": "drake",
+      "Version": "7.6.1.9000",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteUsername": "ropensci",
+      "RemoteRepo": "drake",
+      "RemoteRef": "master",
+      "RemoteSha": "a6f7fa7a00af97dc872ab20154cfd5659a9f81f4",
+      "RemoteHost": "api.github.com",
+      "Hash": "0ed2027d92cb03e1afbac517bc0da7a7"
+    },
     "ellipsis": {
       "Package": "ellipsis",
       "Version": "0.2.0.1",
@@ -221,6 +239,12 @@
       "Version": "0.4.0",
       "Source": "CRAN",
       "Hash": "cd87b0162287f0da225edfaa2fd3a20c"
+    },
+    "filelock": {
+      "Package": "filelock",
+      "Version": "1.0.2",
+      "Source": "CRAN",
+      "Hash": "784db550445dfa0f28cacd1e07fed4c8"
     },
     "fs": {
       "Package": "fs",
@@ -441,9 +465,9 @@
     },
     "nlme": {
       "Package": "nlme",
-      "Version": "3.1-140",
+      "Version": "3.1-141",
       "Source": "CRAN",
-      "Hash": "ad3b02c6f154deac3584133e6e015cd3"
+      "Hash": "be8db89838a17117a4083e72350443e0"
     },
     "openssl": {
       "Package": "openssl",
@@ -477,9 +501,9 @@
     },
     "pkgbuild": {
       "Package": "pkgbuild",
-      "Version": "1.0.4",
+      "Version": "1.0.5",
       "Source": "CRAN",
-      "Hash": "efbc9215b1e6453aa0417bf5516c260b"
+      "Hash": "00ec4a14a879c7fda96b2228cff1c5cc"
     },
     "pkgconfig": {
       "Package": "pkgconfig",
@@ -558,6 +582,18 @@
       "Version": "2.1.0",
       "Source": "CRAN",
       "Hash": "830aa73278dce9beba583bfe57a5c015"
+    },
+    "renv": {
+      "Package": "renv",
+      "Version": "0.7.0-21",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteUsername": "rstudio",
+      "RemoteRepo": "renv",
+      "RemoteRef": "master",
+      "RemoteSha": "e0a0c1399e5515e26284ce1a10df903491b57ff1",
+      "RemoteHost": "api.github.com",
+      "Hash": "732cbe6a877bc10ac5509c38f670c58b"
     },
     "reshape2": {
       "Package": "reshape2",
@@ -649,6 +685,12 @@
       "Source": "CRAN",
       "Hash": "9f6f41df5ca0786682825edd0eb84a3e"
     },
+    "storr": {
+      "Package": "storr",
+      "Version": "1.2.1",
+      "Source": "CRAN",
+      "Hash": "3bd64ff7d32ab39360094aa228a3197b"
+    },
     "stringi": {
       "Package": "stringi",
       "Version": "1.4.3",
@@ -697,17 +739,23 @@
       "Source": "CRAN",
       "Hash": "11c9260eb54db1f55e7573844c2ae8ed"
     },
+    "txtq": {
+      "Package": "txtq",
+      "Version": "0.1.5",
+      "Source": "CRAN",
+      "Hash": "dc333dae167fd4e587ba1cce180d7bdb"
+    },
     "usethis": {
       "Package": "usethis",
       "Version": "1.5.1.9000",
       "Source": "GitHub",
       "RemoteType": "github",
-      "RemoteHost": "api.github.com",
-      "RemoteRepo": "usethis",
       "RemoteUsername": "r-lib",
+      "RemoteRepo": "usethis",
       "RemoteRef": "master",
-      "RemoteSha": "bcef417db920ce3a776e2c71db1739c281f9cc70",
-      "Hash": "c99a896ae65a87c76ff6c4c8aa92a16d"
+      "RemoteSha": "4377307c35dfea365edf2ac99cdbedc83f56663b",
+      "RemoteHost": "api.github.com",
+      "Hash": "343c3226d4ce8e2c477b5ce583d1fe38"
     },
     "utf8": {
       "Package": "utf8",
@@ -735,9 +783,9 @@
     },
     "visNetwork": {
       "Package": "visNetwork",
-      "Version": "2.0.7",
+      "Version": "2.0.8",
       "Source": "CRAN",
-      "Hash": "72bfc95f92a126211b42d99581747db1"
+      "Hash": "c5f1dba5bf63894ac562452f0edb7967"
     },
     "vroom": {
       "Package": "vroom",
@@ -753,9 +801,9 @@
     },
     "whisker": {
       "Package": "whisker",
-      "Version": "0.3-2",
+      "Version": "0.4",
       "Source": "CRAN",
-      "Hash": "c6d8a035a88c6e3222f0efaac18406f6"
+      "Hash": "99cb522b4fa9e2cf1592ac5163fd917f"
     },
     "withr": {
       "Package": "withr",
