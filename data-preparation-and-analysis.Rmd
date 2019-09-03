@@ -1,13 +1,3 @@
-```{r data-setup, include = FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-
-source("analysis/packages.R")
-source("analysis/utils.R")
-loadd(raw_data_excerpts)
-loadd(raw_data)
-loadd(training_data)
-```
-
 # Data Preparation and Analysis
 
 Perhaps the most difficult aspect of the predictive modeling workflow to write about is data preparation. When it comes to predictive modeling on structured data, the techniques and their implementations are more or less standard across industries. On the other hand, there is tremendous variability in what data sources look like at insurers and therefore in the paths to arrive at modeling-ready datasets from raw data (not to mention navigating politics to acquire said data!). However, we are talking about insurance after all, so the concept of policies, exposures, and claims are relativel invariant across companies.
