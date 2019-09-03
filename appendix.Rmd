@@ -4,78 +4,6 @@
 
 # Raw Table Excerpts {#raw-table-excerpts}
 
-```{r data-excerpt-setup, include = FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-library(fs)
-library(stringr)
-library(magrittr)
-library(glue)
-library(here)
-library(gt)
-source("analysis/utils.R")
-
-data_dir <- fs::path(here::here(), "external_data", "Autoseg2012B")
-
-read_excerpt <- function(tbl, data_dir, n_max = 10) {
-  get_num_cols <- function(file) {
-    readLines(file, n = 1) %>% str_split(";") %>% unlist() %>% length()
-  }
-  file_path <- paste0(file.path(data_dir, tbl), ".csv")
-  ncol_casco_comp <- get_num_cols(file_path)
-  read_autoseg(
-    file_path,
-    n_max = n_max, col_types = paste0(rep("c", ncol_casco_comp), collapse = "")
-  )
-}
-
-print_table <- function(tbl, tbl_name = NULL) {
-  tbl_name <- if (is.null(tbl_name)) 
-    as.character(substitute(tbl))
-  else tbl_name
-  
-  tbl %>% 
-    gt::gt() %>% 
-    gt::tab_header(gt::md(glue::glue("**{tbl_name}**")))
-}
-
-print_summary <- function(tbl) {
-  tbl %>%
-    skimr::skim() %>%
-    skimr::kable()
-}
-
-arq_casco_comp <- read_excerpt(
-  tbl = "arq_casco_comp", data_dir = data_dir
-)
-
-arq_casco3_comp <- read_excerpt(
-  tbl = "arq_casco3_comp", data_dir = data_dir
-)
-
-arq_casco4_comp <- read_excerpt(
-  tbl = "arq_casco4_comp", data_dir = data_dir
-)
-
-premreg <- read_excerpt(
-  tbl = "PremReg", data_dir = data_dir
-)
-
-sinreg <- read_excerpt(
-  tbl = "SinReg", data_dir = data_dir
-)
-
-auto_cat <- read_autoseg(path(data_dir, "auto_cat.csv"))
-auto_cau <- read_autoseg(path(data_dir, "auto_cau.csv"))
-auto_cep <- read_autoseg(path(data_dir,"auto_cep.csv"))
-auto_cidade <- read_autoseg(path(data_dir,"auto_cidade.csv"))
-auto_cob <- read_autoseg(path(data_dir,"auto_cob.csv"))
-auto_idade <- read_autoseg(path(data_dir,"auto_idade.csv"))
-auto_reg <- read_autoseg(path(data_dir,"auto_reg.csv"))
-auto_sexo <- read_autoseg(path(data_dir,"auto_sexo.csv"))
-auto2_grupo <- read_autoseg(path(data_dir,"auto2_grupo.csv"))
-auto2_vei <- read_autoseg(path(data_dir,"auto2_vei.csv"))
-```
-
 This appendix contains excerpts of the raw data tables discussed in section \@ref(autoseg)
 
 ## Main Tables
@@ -83,23 +11,23 @@ This appendix contains excerpts of the raw data tables discussed in section \@re
 Excerpts of the main tables are provided below.
 
 ```{r arq_casco_comp, echo = FALSE, fig.cap=""}
-print_table(arq_casco_comp)
+print_table(raw_data_excerpts$arq_casco_comp)
 ```
 
 ```{r, echo = FALSE}
-print_table(arq_casco3_comp)
+print_table(raw_data_excerpts$arq_casco3_comp)
 ```
 
 ```{r, echo = FALSE}
-print_table(arq_casco4_comp)
+print_table(raw_data_excerpts$arq_casco4_comp)
 ```
 
 ```{r, echo = FALSE}
-print_table(premreg)
+print_table(raw_data_excerpts$premreg)
 ```
 
 ```{r, echo = FALSE}
-print_table(sinreg)
+print_table(raw_data_excerpts$sinreg)
 ```
 
 ## Auxiliary tables
@@ -107,53 +35,53 @@ print_table(sinreg)
 Excerpts of auxiliary tables are provided below.
 
 ```{r, echo = FALSE}
-print_table(auto_cat)
+print_table(raw_data$auto_cat)
 ```
 
 ```{r, echo = FALSE}
-print_table(auto_cau)
+print_table(raw_data$auto_cau)
 ```
 
 ```{r, echo = FALSE}
-auto_cep %>%
+raw_data$auto_cep %>%
   head(10) %>%
   print_table("auto_cep")
 ```
 
 ```{r, echo = FALSE}
-auto_cidade %>%
+raw_data$auto_cidade %>%
   head(10) %>%
   print_table("auto_cidade")
 ```
 
 ```{r, echo = FALSE}
-print_table(auto_cob)
+print_table(raw_data$auto_cob)
 ```
 
 ```{r, echo = FALSE}
-auto_idade %>%
+raw_data$auto_idade %>%
   head(10) %>%
   print_table("auto_idade")
 ```
 
 ```{r, echo = FALSE}
-auto_reg %>%
+raw_data$auto_reg %>%
   head(10) %>%
   print_table("auto_reg")
 ```
 
 ```{r, echo = FALSE}
-print_table(auto_sexo)
+print_table(raw_data$auto_sexo)
 ```
 
 ```{r, echo = FALSE}
-auto2_grupo %>%
+raw_data$auto2_grupo %>%
   head(10) %>%
   print_table("auto2_grupo")
 ```
 
 ```{r, echo = FALSE}
-auto2_vei %>%
+raw_data$auto2_vei %>%
   head(10) %>%
   print_table("auto2_vei")
 ```
