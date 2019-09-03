@@ -13,6 +13,7 @@ before_install:
 - npm install netlify-cli -g
 
 script:
+- Rscript analysis/data-fetch.R
 - Rscript make.R
 
 deploy:
