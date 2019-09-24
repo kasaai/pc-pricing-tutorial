@@ -1,6 +1,6 @@
 [![Travis build status](https://travis-ci.org/kasaai/pc-pricing-tutorial.svg?branch=master)](https://travis-ci.org/kasaai/pc-pricing-tutorial)
 
-[Slack](https://join.slack.com/t/kasaai/shared_invite/enQtNTY4OTQ0OTcyODY1LTU3YzFjMjFhY2YyMGE3MjRkM2Y1MGNlZjY0NWQ4MGI2NmVhOWQyODRjZTZmMWQ4MzBkMDliYmNjYmI2NzVmZjY)
+[Slack](https://slack.kasa.ai) (#pricing-tutorial)
 
 # P&C Pricing Tutorial
 
