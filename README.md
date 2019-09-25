@@ -25,5 +25,5 @@ Interested in joining in on the fun? Look at the [issues](https://github.com/kas
 -----
 
 Please note that this project is released with a [Contributor Code of
-Conduct](https://github.com/kasaai/quests/blob/master/CODE_OF_CONDUCT.md). By participating in this project
+Conduct](https://github.com/kasaai/community/blob/master/CODE_OF_CONDUCT.md). By participating in this project
 you agree to abide by its terms.
