@@ -145,7 +145,28 @@ read_raw_data <- function(data_dir) {
       exposure = EXPOSICAO1,
       premium = PREMIO1,
       average_insured_amount = IS_MEDIA
-    ) 
+    ) %>% 
+    rename_at(
+      # Translate count/amount and perils
+      vars(matches("^(FREQ_SIN|INDENIZ)")),
+      function(x) {
+        str_split(x, "(?=[0-9])") %>%
+          map_chr(function(splitted) {
+            value_type <- if (splitted[[1]] == "FREQ_SIN") "claim_count" else "claim_amount"
+            peril <- switch(
+              splitted[[2]],
+              "1" = "theft",
+              "2" = "collision_partial",
+              "3" = "collision_total_loss",
+              "4" = "fire",
+              "9" = "other"
+            )
+            paste(value_type, peril, sep = "_")
+          })
+      }
+    ) %>% 
+    # Remove unused columns
+    select(-EXPOSICAO2, -PREMIO2)
   
   list(
     auto_cat = auto_cat,
